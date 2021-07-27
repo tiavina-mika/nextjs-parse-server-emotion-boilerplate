@@ -1,8 +1,6 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import { jsx, ThemeProvider } from '@emotion/react';
+import { ThemeProvider } from '@emotion/react';
 
-import { globalStyles } from '../styles/Styles';
+import { globalStyles } from '../styles/styles';
 import theme from '../styles/theme';
 
 const MyApp = ({ Component, pageProps }) => {

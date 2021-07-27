@@ -1,11 +1,16 @@
 import { css, Global } from '@emotion/react';
+import facepaint from 'facepaint';
 
 const breakpoints = [576, 768, 992, 1200];
 
-export const media = {
-  min: breakpoints.map((bp) => `@media (min-width: ${bp}px)`),
-  max: breakpoints.map((bp) => `@media (max-width: ${bp}px)`),
-};
+// export const media = {
+//   min: breakpoints.map((bp) => `@media (min-width: ${bp}px)`),
+//   max: breakpoints.map((bp) => `@media (max-width: ${bp}px)`),
+// };
+
+export const mq = facepaint(
+  breakpoints.map((bp) => `@media (min-width: ${bp}px)`),
+);
 
 const getGlobalStyles = () => css`
       html,
