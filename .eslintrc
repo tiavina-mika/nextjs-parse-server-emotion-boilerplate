@@ -1,10 +1,14 @@
 {
   "extends": ["next", "airbnb", "prettier"],
   "plugins": [
-    "prefer-arrow"
+    "prefer-arrow",
+    "prettier"
   ],
   "rules": {
-    "react/jsx-one-expression-per-line": ["warn", { "allow": "literal" }],
+    "semi": [2, "always"],
+    "react/jsx-one-expression-per-line": "off",
+    "react/jsx-indent": [2, 2],
+    "react/jsx-indent-props": [2, 2],
     "react/jsx-curly-newline": [
       "error",
       {
@@ -43,8 +47,6 @@
     "prefer-template": "off",
     "arrow-body-style": "off",
     "indent": "off",
-    "react/jsx-indent": "off",
-    "react/jsx-indent-props": "off",
     "no-await-in-loop": "off",
     "prefer-arrow/prefer-arrow-functions": [
       "warn",

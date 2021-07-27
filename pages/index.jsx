@@ -1,4 +1,4 @@
-import Head from 'next/head'
+import Head from 'next/head';
 import Image from 'next/image';
 
 export default function Home() {
@@ -63,7 +63,8 @@ export default function Home() {
         </a>
       </footer>
 
-      <style jsx>{`
+      <style jsx>
+        {`
         .container {
           min-height: 100vh;
           padding: 0 0.5rem;
@@ -192,9 +193,11 @@ export default function Home() {
             flex-direction: column;
           }
         }
-      `}</style>
+      `}
+      </style>
 
-      <style jsx global>{`
+      <style jsx global>
+        {`
         html,
         body {
           padding: 0;
@@ -207,7 +210,8 @@ export default function Home() {
         * {
           box-sizing: border-box;
         }
-      `}</style>
+      `}
+      </style>
     </div>
-  )
+  );
 }
