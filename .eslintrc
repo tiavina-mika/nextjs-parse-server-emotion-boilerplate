@@ -1,3 +1,6 @@
 {
-  "extends": ["next", "prettier"]
+  "extends": ["next", "airbnb", "prettier"],
+  "rules": {
+    "react/react-in-jsx-scope": "off"
+  }
 }
