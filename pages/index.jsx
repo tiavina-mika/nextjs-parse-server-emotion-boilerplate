@@ -4,7 +4,7 @@ import { mq } from '../styles/styles';
 
 const styles = {
   container: (theme) => mq({
-    backgroundColor: ['green', 'red', 'hotpink', 'blue'],
+    backgroundColor: ['green', false, 'hotpink', 'blue'], // green, green, hotpink, blue
     color: theme.colors.primary,
   }),
   size: {
