@@ -7,9 +7,9 @@ const styles = {
     backgroundColor: ['green', false, 'hotpink', 'blue'], // green, green, hotpink, blue
     color: theme.colors.primary,
   }),
-  size: {
-    height: 200,
-  },
+  size: ({ size }) => ({
+    height: size,
+  }),
 };
 
 export default function Home() {
@@ -24,7 +24,7 @@ export default function Home() {
         {/* <div css={(theme) => ({ color: theme.colors.primary })}>
           some other text
         </div> */}
-        <div css={[styles.container, styles.size]}>
+        <div css={[styles.container, styles.size({ size: 400 })]}>
           Some text.
         </div>
       </main>
