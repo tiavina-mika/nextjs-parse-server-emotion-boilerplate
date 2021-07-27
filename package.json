@@ -16,6 +16,8 @@
     "express": "^4.17.1",
     "facepaint": "^1.2.1",
     "next": "^11.0.0",
+    "parse": "^3.3.0",
+    "parse-server": "^2.2.13",
     "react": "17.0.2",
     "react-dom": "17.0.2"
   },
