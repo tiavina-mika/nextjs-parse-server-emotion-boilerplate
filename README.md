@@ -1,0 +1,1 @@
+# nextjs-parse-server-emotion-boilerplate
