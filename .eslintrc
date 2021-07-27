@@ -1,8 +1,7 @@
 {
-  "extends": ["next", "airbnb", "prettier"],
+  "extends": ["next", "airbnb"],
   "plugins": [
-    "prefer-arrow",
-    "prettier"
+    "prefer-arrow"
   ],
   "rules": {
     "semi": [2, "always"],
@@ -13,19 +12,19 @@
       "error",
       {
         "multiline": "consistent",
-        "singleline": "consistent",
-      },
+        "singleline": "consistent"
+      }
     ],
     "quotes": [
-      "error",
+      2,
       "single",
-      { "avoidEscape": true, "allowTemplateLiterals": false },
+      { "avoidEscape": true, "allowTemplateLiterals": false }
     ],
     "import/no-extraneous-dependencies": [
       "error",
       {
-        "devDependencies": true,
-      },
+        "devDependencies": true
+      }
     ],
     "react/react-in-jsx-scope": "off",
     "react/jsx-props-no-spreading": "off",
