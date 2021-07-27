@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "lint:fix": "next lint --fix --dir pages --dir styles"
+    "lint:fix": "next lint --fix"
   },
   "dependencies": {
     "@emotion/react": "^11.4.0",
