@@ -1,7 +1,7 @@
 const theme = {
   colors: {
     primary: 'rgb(0, 121, 148)',
-    dark: '#1b2837',
+    dark: '#1c2022',
     white: '#fff',
     alert: '#ff7676', // old infored
     active: '#22c93a',

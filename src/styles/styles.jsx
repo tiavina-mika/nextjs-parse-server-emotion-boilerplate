@@ -127,6 +127,9 @@ const getGlobalStyles = () => css`
       .height100 {
         height: 100%;
       }
+      .minHeight100 {
+        height: 100vh;
+      }
       .pointer {
         cursor: pointer;
       }
@@ -230,6 +233,79 @@ const getGlobalStyles = () => css`
       }
       .m-t-0 {
         margin-top: 0;
+      }
+
+      .p-r-5 {
+        padding-right: 5px;
+      }
+      .p-r-8 {
+        padding-right: 8px;
+      }
+      .p-r-10 {
+        padding-right: 10px;
+      }
+      .p-r-15 {
+        padding-right: 15px;
+      }
+      .p-r-20 {
+        padding-right: 20px;
+      }
+      .p-r-25 {
+        padding-right: 25px;
+      }
+      .p-t-10 {
+        padding-top: 10px;
+      }
+      .p-t-15 {
+        padding-top: 15px;
+      }
+      .p-t-20 {
+        padding-top: 20px;
+      }
+      .p-t-25 {
+        padding-top: 25px;
+      }
+      .p-t-50 {
+        padding-top: 50px;
+      }
+      .p-l-5 {
+        padding-left: 5px;
+      }
+      .p-l-8 {
+        padding-left: 8px;
+      }
+      .p-l-10 {
+        padding-left: 10px;
+      }
+      .p-l-15 {
+        padding-left: 15px;
+      }
+      .p-l-20 {
+        padding-left: 20px;
+      }
+      .p-l-25 {
+        padding-left: 25px;
+      }
+      .p-b-3 {
+        padding-bottom: 3px;
+      }
+      .p-b-5 {
+        padding-bottom: 5px;
+      }
+      .p-b-8 {
+        padding-bottom: 8px;
+      }
+      .p-b-10 {
+        padding-bottom: 10px;
+      }
+      .p-b-15 {
+        padding-bottom: 15px;
+      }
+      .p-b-25 {
+        padding-bottom: 25px;
+      }
+      .p-t-0 {
+        padding-top: 0;
       }
       .title12 {
         font-size: 12px;

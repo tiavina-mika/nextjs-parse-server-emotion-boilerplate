@@ -1,8 +1,13 @@
 import withSession from '../api/withSession';
+import Layout from '../components/Layout';
 import TemplateList from '../containers/templates/Templates';
 
 const Home = ({ templates }) => {
-  return <TemplateList templates={templates} />;
+  return (
+    <Layout>
+      <TemplateList templates={templates} />
+    </Layout>
+  );
 };
 
 export const getServerSideProps = withSession(
