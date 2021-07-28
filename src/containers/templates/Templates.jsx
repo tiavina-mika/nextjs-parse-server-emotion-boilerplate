@@ -32,7 +32,7 @@ const Templates = ({ templates, title }) => {
     setData(templates);
   }, [templates]);
 
-  const handleDelete = async (e, id)=> {
+  const handleDelete = async (e, id) => {
     e.preventDefault();
     await axios.delete('http://localhost:3000/api/templates/' + id);
     const newData = data.filter((d) => d.objectId !== id);

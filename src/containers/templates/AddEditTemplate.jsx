@@ -1,4 +1,3 @@
-
 import { useMemo } from 'react';
 
 import axios from 'axios';
@@ -17,11 +16,10 @@ const AddEditTemplate = ({ template }) => {
   const isAddMode = !template;
 
   const router = useRouter();
-  
+
   const onSubmit = async (values) => {
     if (isAddMode) {
      await axios.post('http://localhost:3000/api/templates', values);
-      // const data = await axios.post('http://localhost:3000/api/templates', values);
       router.push('/templates');
       return;
     }
@@ -42,7 +40,7 @@ const AddEditTemplate = ({ template }) => {
     <div className="flexCenter">
       <div css={classes.container} className="flexCenter">
         <h2>
-          {isAddMode ? 'Ajouter nouveau template': 'Modifier template'}
+          {isAddMode ? 'Ajouter nouveau template' : 'Modifier template'}
         </h2>
         <TemplateForm onSubmit={onSubmit} defaultValues={defaultValues} />
       </div>
