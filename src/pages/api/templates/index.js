@@ -5,7 +5,9 @@ const Template = Parse.Object.extend('Template');
 const handler = withSession(async ({ req, res }) => {
   // get templates
   const getTemplates = async () => {
-    const templates = await new Parse.Query('Template').find();
+    const templates = await new Parse.Query('Template')
+      .notEqualTo('deleted', true)
+      .find();
     return res.status(200).json(templates);
   };
 

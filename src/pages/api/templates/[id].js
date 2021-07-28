@@ -11,6 +11,7 @@ const handler = withSession(async ({ req, res }) => {
     return template;
   };
 
+  // edit template
   const editTemplate = async () => {
     const template = await getTemplate();
     const { name } = req.body;
@@ -20,9 +21,20 @@ const handler = withSession(async ({ req, res }) => {
     return res.status(200).json(newTemplate);
   };
 
+  // delete template
+  const deleteTemplate = async () => {
+    const template = await getTemplate();
+
+    template.set('delete', true);
+    const newTemplate = await template.save();
+    return res.status(200).json(newTemplate);
+  };
+
   switch (req.method) {
       case 'PUT':
           return editTemplate();
+      case 'DELETE':
+        return deleteTemplate();
       default:
           return res.status(405).end(`Method ${req.method} Not Allowed`);
   }

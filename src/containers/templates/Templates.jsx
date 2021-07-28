@@ -1,3 +1,7 @@
+import { useState, useEffect } from 'react';
+
+import axios from 'axios';
+
 import Link from '../../components/Link';
 
 const classes = {
@@ -22,12 +26,25 @@ const classes = {
 };
 
 const Templates = ({ templates, title }) => {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    setData(templates);
+  }, [templates]);
+
+  const handleDelete = async (e, id)=> {
+    e.preventDefault();
+    await axios.delete('http://localhost:3000/api/templates/' + id);
+    const newData = data.filter((d) => d.objectId !== id);
+    setData([...newData]);
+  };
+
   return (
     <div>
       <h1>{title || 'Liste des templates'}</h1>
       <div css={classes.main}>
         <ul css={classes.list} className="flexCenter">
-          {templates.map((template) => (
+          {data.map((template) => (
             <li key={template.objectId} className="flexRow stretchSelf spaceBetween" css={classes.item}>
               <div>
                 {template.name}
@@ -38,6 +55,9 @@ const Templates = ({ templates, title }) => {
                 </Link>
                 <Link href={'/templates/' + template.objectId} css={classes.button}>
                   Voir
+                </Link>
+                <Link href={'/templates/' + template.objectId} css={classes.button} onClick={(e) => handleDelete(e, template.objectId)}>
+                  Supprimer
                 </Link>
               </div>
             </li>

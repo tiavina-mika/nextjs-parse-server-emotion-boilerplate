@@ -23,11 +23,20 @@ const classes = {
 };
 
 const Link = ({
- href, children, className, css, type = 'link', color = 'primary', ...props
+ href, children, className, css,
+ type = 'link', color = 'primary',
+ onClick,
+ ...props
 }) => {
     return (
       <NextLink href={href}>
-        <a {...props} css={[classes.link, type === 'button' && [classes[color], classes.button], css]} className={className}>
+        <a
+          {...props}
+          css={[classes.link,
+            type === 'button' && [classes[color], classes.button], css]}
+          className={className}
+          onClick={onClick}
+        >
           {children}
         </a>
       </NextLink>
