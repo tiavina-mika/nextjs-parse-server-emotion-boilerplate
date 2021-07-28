@@ -17,9 +17,13 @@ const classes = {
     listStyle: 'none',
     display: ['none', 'none', 'flex'],
   }),
-  link: {
+  item: (theme) => mq({
+    margin: [false, false, -theme.spacing(1.1)],
+  }),
+  link: (theme) => mq({
     color: '#fff',
-  },
+    margin: [false, false, theme.spacing(1.1)],
+  }),
   navIcon: mq({
     background: 'none',
     cursor: 'pointer',
@@ -71,9 +75,12 @@ const Navbar = () => {
   const [on, toggle] = useState(false);
 
   const menu = (
-    <li>
+    <li css={classes.item}>
       <Link href="/templates" css={classes.link}>
         Templates
+      </Link>
+      <Link href="/templates/ajouter" css={classes.link}>
+        Ajouter Template
       </Link>
     </li>
   );

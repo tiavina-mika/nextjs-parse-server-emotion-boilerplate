@@ -1,4 +1,5 @@
 import withSession from '../../api/withSession';
+import Layout from '../../components/Layout';
 import Link from '../../components/Link';
 
 const classes = {
@@ -16,7 +17,7 @@ const classes = {
 
 const Template = ({ template }) => {
   return (
-    <div>
+    <Layout>
       <h1>{template.name}</h1>
       <div css={classes.main}>
         <div className="flexRow" css={classes.buttons}>
@@ -25,7 +26,7 @@ const Template = ({ template }) => {
           </Link>
         </div>
       </div>
-    </div>
+    </Layout>
   );
 };
 

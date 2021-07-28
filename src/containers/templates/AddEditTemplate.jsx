@@ -3,6 +3,7 @@ import { useMemo } from 'react';
 import { useRouter } from 'next/router';
 
 import { TEMPLATE_API } from '../../api/api';
+import Layout from '../../components/Layout';
 import TemplateForm from './TemplateForm';
 
 const classes = {
@@ -38,14 +39,17 @@ const AddEditTemplate = ({ template }) => {
   }, [template]);
 
   return (
-    <div className="flexCenter">
-      <div css={classes.container} className="flexCenter">
-        <h2>
-          {isAddMode ? 'Ajouter nouveau template' : 'Modifier template'}
-        </h2>
-        <TemplateForm onSubmit={onSubmit} defaultValues={defaultValues} />
+    <Layout>
+      <div className="flexCenter">
+        <div css={classes.container} className="flexCenter">
+          <h2>
+            {isAddMode ? 'Ajouter nouveau template' : 'Modifier template'}
+          </h2>
+          <TemplateForm onSubmit={onSubmit} defaultValues={defaultValues} />
+        </div>
       </div>
-    </div>
+    </Layout>
+
   );
 };
 
