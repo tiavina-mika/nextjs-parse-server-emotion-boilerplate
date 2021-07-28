@@ -24,6 +24,7 @@ const TemplateForm = ({
 }) => {
   const { register, handleSubmit, formState: { errors } } = useForm({
     resolver: yupResolver(schema),
+    defaultValues,
   });
 
   return (
@@ -38,7 +39,7 @@ const TemplateForm = ({
           <Field
             name="name"
             register={register}
-            defaultValue={defaultValues?.name}
+            // defaultValue={defaultValues?.name}
             placeholder="Nom"
             error={errors.name?.message}
             required

@@ -25,7 +25,7 @@ const classes = {
 
 const Field = ({
  label, register, required, className, name, fullWidth,
- placeholder, rootClassName, labelClassName, defaultValue,
+ placeholder, rootClassName, labelClassName,
  error,
 }) => (
   <div css={[fullWidth && classes.fullWidth, rootClassName]}>
@@ -41,7 +41,6 @@ const Field = ({
       {...register(name, { required })}
       css={[classes.input, className]}
       placeholder={placeholder}
-      defaultValue={defaultValue}
     />
 
     {/* ------------- error ------------- */}
