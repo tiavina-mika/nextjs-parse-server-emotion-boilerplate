@@ -1,6 +1,9 @@
 
 import { useMemo } from 'react';
 
+import axios from 'axios';
+import { useRouter } from 'next/dist/client/router';
+
 import TemplateForm from './TemplateForm';
 
 const classes = {
@@ -12,12 +15,19 @@ const classes = {
 
 const AddEditTemplate = ({ template }) => {
   const isAddMode = !template;
+
+  const router = useRouter();
   
-  const onSubmit = (data) => {
-    console.log('data: ', data);
-      // return isAddMode
-      //     ? createUser(data)
-      //     : updateUser(user.id, data);
+  const onSubmit = async (values) => {
+    if (isAddMode) {
+     await axios.post('http://localhost:3000/api/templates', values);
+      // const data = await axios.post('http://localhost:3000/api/templates', values);
+      router.push('/templates');
+      return;
+    }
+
+    const data = await axios.put('http://localhost:3000/api/templates/' + template.objectId, values);
+    router.push('/templates/' + data.data.objectId);
   };
 
   const defaultValues = useMemo(() => {

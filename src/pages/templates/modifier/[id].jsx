@@ -2,9 +2,9 @@ import withSession from '../../../api/withSession';
 import AddEditTemplate from '../../../containers/templates/AddEditTemplate';
 
 export const getServerSideProps = withSession(
-  async ({ params }) => {
+  async ({ req }) => {
     const template = await new Parse.Query('Template')
-      .equalTo('objectId', params.id)
+      .equalTo('objectId', req.params.id)
       .first();
 
     return {

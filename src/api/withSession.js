@@ -1,6 +1,10 @@
-const withSession = (fn) => async (context) => {
-  const sessionToken = context.req.cookies?.sessionToken ?? '';
-  const result = await fn({ ...context, sessionToken });
+const withSession = (fn) => async (req, res, ...context) => {
+  const cookies = req?.cookies || req?.req.cookies;
+  const sessionToken = cookies ?? '';
+
+  const result = await fn({
+    req, res, sessionToken, ...context,
+  });
   return result;
 };
 

@@ -1,33 +1,21 @@
-import Head from 'next/head';
+import withSession from '../api/withSession';
+import TemplateList from '../containers/templates/Templates';
 
-import { mq } from '../styles/styles';
-
-const styles = {
-  container: (theme) => mq({
-    backgroundColor: ['green', false, 'hotpink', 'blue'], // green, green, hotpink, blue
-    color: theme.colors.primary,
-  }),
-  size: ({ size }) => ({
-    height: size,
-  }),
+const Home = ({ templates }) => {
+  return <TemplateList templates={templates} />;
 };
 
-export default function Home() {
-  return (
-    <div className="container">
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+export const getServerSideProps = withSession(
+  async ({ sessionToken }) => {
+    console.log('sessionToken: ', sessionToken);
+    const templates = await new Parse.Query('Template').find();
 
-      <main>
-        {/* <div css={(theme) => ({ color: theme.colors.primary })}>
-          some other text
-        </div> */}
-        <div css={[styles.container, styles.size({ size: 400 })]}>
-          Some text.
-        </div>
-      </main>
-    </div>
-  );
-}
+    return {
+      props: {
+        templates: templates.map((t) => t.toJSON()),
+      },
+    };
+  },
+);
+
+export default Home;
