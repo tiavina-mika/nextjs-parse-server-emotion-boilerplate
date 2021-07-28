@@ -42,28 +42,32 @@ const Templates = ({ templates, title }) => {
   return (
     <div>
       <h1>{title || 'Liste des templates'}</h1>
-      <div css={classes.main}>
-        <ul css={classes.list} className="flexCenter">
-          {data.map((template) => (
-            <li key={template.objectId} className="flexRow stretchSelf spaceBetween" css={classes.item}>
-              <div>
-                {template.name}
-              </div>
-              <div className="flexRow" css={classes.buttons}>
-                <Link href={'/templates/modifier/' + template.objectId} css={classes.button}>
-                  Modifier
-                </Link>
-                <Link href={'/templates/' + template.objectId} css={classes.button}>
-                  Voir
-                </Link>
-                <Link href={'/templates/' + template.objectId} css={classes.button} onClick={(e) => handleDelete(e, template.objectId)}>
-                  Supprimer
-                </Link>
-              </div>
-            </li>
-          ))}
-        </ul>
-      </div>
+      {data.length > 0
+        ? (
+          <div css={classes.main}>
+            <ul css={classes.list} className="flexCenter">
+              {data.map((template) => (
+                <li key={template.objectId} className="flexRow stretchSelf spaceBetween" css={classes.item}>
+                  <div>
+                    {template.name}
+                  </div>
+                  <div className="flexRow" css={classes.buttons}>
+                    <Link href={'/templates/modifier/' + template.objectId} css={classes.button}>
+                      Modifier
+                    </Link>
+                    <Link href={'/templates/' + template.objectId} css={classes.button}>
+                      Voir
+                    </Link>
+                    <Link href={'/templates/' + template.objectId} css={classes.button} onClick={(e) => handleDelete(e, template.objectId)}>
+                      Supprimer
+                    </Link>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )
+        : <div>Pas encore de templates</div>}
     </div>
   );
 };
