@@ -1,7 +1,13 @@
+import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
+import * as yup from 'yup';
 
 import Button from '../../components/Button';
 import Field from '../../components/Field';
+
+const schema = yup.object().shape({
+  name: yup.string().required(),
+});
 
 const classes = {
   container: (theme) => ({
@@ -16,7 +22,9 @@ const classes = {
 const TemplateForm = ({
   onSubmit, title, defaultValues, buttonText,
 }) => {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, formState: { errors } } = useForm({
+    resolver: yupResolver(schema),
+  });
 
   return (
     <div className="flexCenter">
@@ -32,6 +40,7 @@ const TemplateForm = ({
             register={register}
             defaultValue={defaultValues?.name}
             placeholder="Nom"
+            error={errors.name?.message}
             required
             fullWidth
           />

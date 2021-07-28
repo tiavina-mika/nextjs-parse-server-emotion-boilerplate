@@ -16,24 +16,40 @@ const classes = {
     transition: 'border-color .3s ease-out',
     width: '100%',
   },
+  error: (theme) => ({
+    color: 'red',
+    fontSize: 12,
+    marginTop: theme.spacing(1),
+  }),
 };
 
 const Field = ({
  label, register, required, className, name, fullWidth,
  placeholder, rootClassName, labelClassName, defaultValue,
+ error,
 }) => (
   <div css={[fullWidth && classes.fullWidth, rootClassName]}>
+    {/* ------------- label ------------- */}
     {label && (
       <label css={labelClassName}>
         {label}
       </label>
     )}
+
+    {/* ------------- input ------------- */}
     <input
       {...register(name, { required })}
       css={[classes.input, className]}
       placeholder={placeholder}
       defaultValue={defaultValue}
     />
+
+    {/* ------------- error ------------- */}
+    {error && (
+      <div css={classes.error}>
+        {error}
+      </div>
+    )}
   </div>
 );
 
