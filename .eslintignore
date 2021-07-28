@@ -2,3 +2,4 @@ node_modules
 .eslintrc
 next.config.js
 server.js
+cloud
