@@ -19,7 +19,8 @@
     "parse": "^3.3.0",
     "parse-server": "^2.2.13",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "react-hook-form": "^7.12.1"
   },
   "devDependencies": {
     "@emotion/babel-plugin": "^11.3.0",

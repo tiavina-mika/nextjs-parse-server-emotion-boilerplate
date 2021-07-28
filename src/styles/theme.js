@@ -1,6 +1,6 @@
 const theme = {
   colors: {
-    primary: 'red',
+    primary: 'rgb(0, 121, 148)',
     dark: '#1b2837',
     white: '#fff',
     alert: '#ff7676', // old infored
@@ -23,6 +23,7 @@ const theme = {
   fonts: {
     primary: 'Montserrat',
   },
+  spacing: (spacing) => spacing * 6,
   typography: {
     h1: {
       fontSize: '26px',
