@@ -1,4 +1,4 @@
-import withSession from '../api/withSession';
+import withSession from '../../api/withSession';
 
 const Template = ({ templates }) => {
   console.log('templates: ', templates);

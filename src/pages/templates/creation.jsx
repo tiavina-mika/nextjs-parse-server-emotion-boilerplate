@@ -1,4 +1,4 @@
-import TemplateForm from '../../containers/template/TemplateForm';
+import TemplateForm from '../../containers/templates/TemplateForm';
 
 const TemplateCreation = () => {
   const onSubmit = (data) => {
