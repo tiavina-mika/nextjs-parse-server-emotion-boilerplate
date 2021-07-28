@@ -1,8 +1,8 @@
 import { useMemo } from 'react';
 
-import axios from 'axios';
-import { useRouter } from 'next/dist/client/router';
+import { useRouter } from 'next/router';
 
+import { TEMPLATE_API } from '../../api/api';
 import TemplateForm from './TemplateForm';
 
 const classes = {
@@ -19,12 +19,13 @@ const AddEditTemplate = ({ template }) => {
 
   const onSubmit = async (values) => {
     if (isAddMode) {
-     await axios.post('http://localhost:3000/api/templates', values);
+      await TEMPLATE_API.createTemplate(values);
+
       router.push('/templates');
       return;
     }
 
-    const data = await axios.put('http://localhost:3000/api/templates/' + template.objectId, values);
+    const data = await TEMPLATE_API.editTemplate(template.objectId, values);
     router.push('/templates/' + data.data.objectId);
   };
 

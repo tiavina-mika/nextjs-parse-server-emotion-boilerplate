@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 
-import axios from 'axios';
-
+import { TEMPLATE_API } from '../../api/api';
 import Link from '../../components/Link';
 
 const classes = {
@@ -34,7 +33,8 @@ const Templates = ({ templates, title }) => {
 
   const handleDelete = async (e, id) => {
     e.preventDefault();
-    await axios.delete('http://localhost:3000/api/templates/' + id);
+    await TEMPLATE_API.deleteTemplate(id);
+
     const newData = data.filter((d) => d.objectId !== id);
     setData([...newData]);
   };

@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import axios from 'axios';
-
+import { TEMPLATE_API } from '../../api/api';
 import TemplateList from '../../containers/templates/Templates';
 
 const Templates = () => {
@@ -9,7 +8,7 @@ const Templates = () => {
 
   useEffect(() => {
     const init = async () => {
-      const data = await axios.get('http://localhost:3000/api/templates');
+      const data = await TEMPLATE_API.getTemplates();
       setTemplates(data.data);
     };
 
