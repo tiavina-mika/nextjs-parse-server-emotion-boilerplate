@@ -3,7 +3,7 @@ const classes = {
     width: '100%',
   },
   input: {
-    borderColor: 'rgb(227, 227, 227)',
+    // borderColor: 'rgb(227, 227, 227)',
     borderRadius: 4,
     fontWeight: 400,
     background: '#fff',
@@ -16,6 +16,9 @@ const classes = {
     transition: 'border-color .3s ease-out',
     width: '100%',
   },
+  invalidInput: {
+    border: '1px solid red',
+  },
   error: (theme) => ({
     color: 'red',
     fontSize: 12,
@@ -25,13 +28,13 @@ const classes = {
 
 const Field = ({
  label, register, required, className, name, fullWidth,
- placeholder, rootClassName, labelClassName,
+ placeholder, rootCss, labelCss, rootClassName, css,
  error,
 }) => (
-  <div css={[fullWidth && classes.fullWidth, rootClassName]}>
+  <div css={[fullWidth && classes.fullWidth, rootCss]} className={rootClassName}>
     {/* ------------- label ------------- */}
     {label && (
-      <label css={labelClassName}>
+      <label css={labelCss}>
         {label}
       </label>
     )}
@@ -39,7 +42,8 @@ const Field = ({
     {/* ------------- input ------------- */}
     <input
       {...register(name, { required })}
-      css={[classes.input, className]}
+      css={[classes.input, error && classes.invalidInput, css]}
+      className={className}
       placeholder={placeholder}
     />
 

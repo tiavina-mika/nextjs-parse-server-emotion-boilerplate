@@ -10,45 +10,56 @@ const schema = yup.object().shape({
 });
 
 const classes = {
-  container: (theme) => ({
-    width: 500,
-    marginTop: theme.spacing(3),
+  submitButton: (theme) => ({
+    marginTop: theme.spacing(2),
   }),
-  button: (theme) => ({
-    marginTop: theme.spacing(3),
+  resetButton: (theme) => ({
+    marginTop: theme.spacing(1),
+    paddingLeft: 25,
+    paddingRight: 25,
   }),
 };
 
 const TemplateForm = ({
-  onSubmit, title, defaultValues, buttonText,
+  onSubmit, defaultValues, buttonText,
 }) => {
-  const { register, handleSubmit, formState: { errors } } = useForm({
+  const {
+    register, handleSubmit, reset,
+    formState: { errors, isSubmitting },
+  } = useForm({
     resolver: yupResolver(schema),
     defaultValues,
   });
 
   return (
-    <div className="flexCenter">
-      <div css={classes.container} className="flexCenter">
-        {title && (
-          <h2>
-            {title}
-          </h2>
-        )}
-        <form className="flexColumn stretchSelf" onSubmit={handleSubmit(onSubmit)}>
-          <Field
-            name="name"
-            register={register}
-            // defaultValue={defaultValues?.name}
-            placeholder="Nom"
-            error={errors.name?.message}
-            required
-            fullWidth
-          />
-          <Button text={buttonText || 'Enregistrer'} className={classes.button} type="submit" />
-        </form>
+    <form className="flexColumn stretchSelf" onSubmit={handleSubmit(onSubmit)}>
+      <Field
+        name="name"
+        register={register}
+        placeholder="Nom"
+        error={errors.name?.message}
+        required
+        fullWidth
+      />
+      <div className="flexCenter stretchSelf">
+        <Button
+          text={buttonText || 'Enregistrer'}
+          css={classes.submitButton}
+          disabled={isSubmitting}
+          type="submit"
+          fullWidth
+        />
+        <Button
+          text="Annuler"
+          onClick={() => reset(defaultValues)}
+          css={classes.resetButton}
+          disabled={isSubmitting}
+          type="button"
+          color="default"
+          fullWidth
+        />
       </div>
-    </div>
+    </form>
   );
 };
 

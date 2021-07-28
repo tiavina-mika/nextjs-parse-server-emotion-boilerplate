@@ -1,10 +1,8 @@
 const classes = {
-  button: (theme) => ({
+  button: {
     color: '#fff',
-    backgroundColor: theme.colors.primary,
     borderRadius: 4,
     fontWeight: 400,
-    margin: '5px auto 20px auto',
     textAlign: 'center',
     border: 'none',
     padding: '14px 22px',
@@ -12,18 +10,38 @@ const classes = {
     '&:hover': {
       opacity: 0.8,
     },
+  },
+  primary: (theme) => ({
+    backgroundColor: theme.colors.primary,
   }),
+  secondary: (theme) => ({
+    backgroundColor: theme.colors.secondary,
+  }),
+  default: {
+    backgroundColor: 'grey',
+  },
   text: {
     fontSize: 14,
+  },
+  fullWidth: {
+    flex: 1,
+    alignSelf: 'stretch',
   },
 };
 
 const Button = ({
- text, type, className, textClassName,
+ text, type, className, css, textCss, disabled = false,
+ onClick, color = 'primary', fullWidth,
 }) => {
   return (
-    <button css={[classes.button, className]} type={type === 'submit' ? 'submit' : 'button'}>
-      <span css={[classes.text, textClassName]}>{text}</span>
+    <button
+      css={[classes.button, css, classes[color], fullWidth && classes.fullWidth]}
+      className={className}
+      type={type === 'submit' ? 'submit' : 'button'}
+      disabled={disabled}
+      onClick={onClick}
+    >
+      <span css={[classes.text, textCss]}>{text}</span>
     </button>
   );
 };

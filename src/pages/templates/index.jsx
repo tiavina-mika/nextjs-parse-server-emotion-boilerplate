@@ -1,18 +1,63 @@
 import withSession from '../../api/withSession';
+import Link from '../../components/Link';
 
-const Template = ({ templates }) => {
-  console.log('templates: ', templates);
+const classes = {
+  submitButton: (theme) => ({
+    marginTop: theme.spacing(2),
+  }),
+  main: (theme) => ({
+    paddingLeft: theme.spacing(1),
+    paddingRight: theme.spacing(1),
+  }),
+  list: (theme) => ({
+    padding: 0,
+    margin: -theme.spacing(1),
+  }),
+  item: (theme) => ({
+    listStyle: 'none',
+    margin: theme.spacing(1),
+  }),
+  buttons: (theme) => ({
+    margin: -theme.spacing(1),
+  }),
+  button: (theme) => ({
+    margin: theme.spacing(1),
+  }),
+};
+
+const Templates = ({ templates }) => {
   return (
     <div>
-      <h1>template API</h1>
-      {/* <p>{templates.name}</p> */}
-      {templates.map((template) => <p key={template.objectId}>{template.name}</p>)}
+      <h1>Liste des templates</h1>
+      <div css={classes.main}>
+        <ul css={classes.list} className="flexCenter">
+          {templates.map((template) => (
+            <li key={template.objectId} className="flexRow stretchSelf spaceBetween" css={classes.item}>
+              <div>
+                {template.name}
+              </div>
+              <div className="flexRow" css={classes.buttons}>
+                <Link href={'/templates/modifier/' + template.objectId} css={classes.button}>
+                  Modifier
+                </Link>
+                <Link href="/templates/ajouter" css={classes.button}>
+                  Ajouter
+                </Link>
+                <Link href={'/templates/' + template.objectId} css={classes.button}>
+                  Voir
+                </Link>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+
       {/* <p>{JSON.stringify(templates)}</p> */}
     </div>
   );
 };
 
-export default Template;
+export default Templates;
 
 // const TemplateObj = Parse.Object.extend('Template');
 
