@@ -7,20 +7,20 @@ const Parse = require('parse/node');
 
 const SERVER_PORT = process.env.PORT || 3000;
 const SERVER_HOST = process.env.HOST || 'localhost';
-const APP_ID = process.env.APP_ID || 'next-ps-demo';
-const MASTER_KEY = process.env.MASTER_KEY || 'F23xUQdRmQLQwxV5N6a74kqF8aPqIM9F';
-const DATABASE_URI =
-  process.env.DATABASE_URI || 'mongodb://localhost:27017/next-ps-demo';
+const APP_ID = 'yourz';
+const MASTER_KEY = 'leveaYourz';
 const IS_DEVELOPMENT = process.env.NODE_ENV !== 'production';
 const nextApp = next({ dev: IS_DEVELOPMENT });
 const handle = nextApp.getRequestHandler();
+const serverURL = 'http://localhost:' + SERVER_PORT + '/parse';
 
-const parseServerAPI = new ParseServer({
-  databaseURI: DATABASE_URI,
+const getParseServerAPI = () => new ParseServer({
+  databaseURI: process.env.DATABASE_URI,
   cloud: path.resolve(__dirname, './cloud/main.js'),
   appId: APP_ID,
   masterKey: MASTER_KEY,
-  serverURL: `http://${SERVER_HOST}:${SERVER_PORT}/parse`,
+  serverURL,
+  // serverURL: `http://${SERVER_HOST}:${SERVER_PORT}/parse`,
 });
 
 global.USE_MASTER_KEY = { useMasterKey: true };
@@ -29,7 +29,7 @@ global.LOCAL = true;
 nextApp
   .prepare()
   .then(() => {
-    Parse.initialize('nextPsDemo');
+    Parse.initialize('yourz');
     Parse.serverURL = `http://${SERVER_HOST}:${SERVER_PORT}/api/parse`;
     Parse.masterKey = MASTER_KEY;
 
@@ -45,7 +45,21 @@ nextApp
       // Pass to next layer of middleware
       next();
     });
-    app.use('/parse', parseServerAPI);
+
+    //--------------------------//
+    //---- https forwarding ----//
+    //--------------------------//
+    if (!IS_DEVELOPMENT) {
+      app.use((req, res, next) => {
+        if ((req.get('X-Forwarded-Proto') === 'http')) { // returns false it didn't go though the firewalls (eg: local call)
+          res.redirect('https://' + req.get('Host') + req.url);
+        } else {
+          next();
+        }
+      });
+    }
+    
+    app.use('/parse', getParseServerAPI());
 
     app.all('*', (req, res) => {
       return handle(req, res);
@@ -59,7 +73,7 @@ nextApp
       );
     });
   })
-  .catch((ex) => {
-    console.error(ex.stack);
+  .catch((error) => {
+    console.error(error.stack);
     process.exit(1);
   });
