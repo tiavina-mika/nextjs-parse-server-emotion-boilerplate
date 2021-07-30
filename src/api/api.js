@@ -1,6 +1,14 @@
 import axios from 'axios';
 /* eslint-disable no-return-await */
 
+export const authorized = (sessionToken) => {
+	return {
+		headers: {
+			Authorization: `Basic ${sessionToken}`,
+		},
+	};
+};
+
 const instance = axios.create({
   baseURL: 'http://localhost:3000/',
 });

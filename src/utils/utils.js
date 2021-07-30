@@ -603,7 +603,10 @@ export const parseSwellNumber = (str) => {
  */
 export const sendRequestError = (req, res) => res.status(405).json({ message: `Method ${req.method} Not Allowed`, success: false });
 
-export const isAuthenticated = () => localStorage.getItem('isAuthenticated');
+export const isAuthenticated = () => {
+  if (!process.browser) return;
+  return localStorage.getItem('isAuthenticated');
+};
 
 export const clearIsAuthIntoLocalStorage = () => {
  localStorage.removeItem('isAuthenticated');
