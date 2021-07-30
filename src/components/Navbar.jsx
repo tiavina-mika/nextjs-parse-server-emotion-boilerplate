@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 
+import { useWindowSize } from '../hooks/useWindowSize';
 import { mq } from '../styles/styles';
 import Link from './Link';
 
@@ -13,17 +14,21 @@ const classes = {
     fontSize: 25,
     color: 'white',
   },
-  menu: mq({
+  menuDesktop: mq({
     listStyle: 'none',
     display: ['none', 'none', 'flex'],
   }),
-  item: (theme) => mq({
-    margin: [false, false, -theme.spacing(1.1)],
-  }),
-  link: (theme) => mq({
-    color: '#fff',
+  menu: (theme) => mq({
+    listStyle: 'none',
+    display: ['none', 'none', 'flex'],
     margin: [false, false, theme.spacing(1.1)],
   }),
+  item: (theme) => mq({
+    margin: [false, false, theme.spacing(1.1)],
+  }),
+  link: {
+    color: '#fff',
+  },
   navIcon: mq({
     background: 'none',
     cursor: 'pointer',
@@ -74,24 +79,29 @@ const classes = {
 const Navbar = () => {
   const [on, toggle] = useState(false);
 
-  const menu = (
-    <li css={classes.item}>
-      <Link href="/templates" css={classes.link}>
-        Templates
-      </Link>
-      <Link href="/templates/ajouter" css={classes.link}>
-        Ajouter Template
-      </Link>
-    </li>
-  );
+  const { isMobile } = useWindowSize();
+  console.log('isMobile: ', isMobile);
+
+  const menu = useMemo(() => (
+    <ul css={[isMobile ? classes.overlayMenu({ on }) : classes.menuDesktop, classes.menu]}>
+      <li css={classes.item}>
+        <Link href="/templates" css={classes.link}>
+          Templates
+        </Link>
+      </li>
+      <li css={classes.item}>
+        <Link href="/templates/ajouter" css={classes.link}>
+          Ajouter Template
+        </Link>
+      </li>
+    </ul>
+  ), [isMobile]);
 
   return (
     <>
       <nav css={classes.nav} className="flexRow alignCenter spaceBetween">
         <h1 css={classes.logo}>Tiavina Mika</h1>
-        <ul css={classes.menu}>
-          {menu}
-        </ul>
+        {menu}
         <button onClick={() => toggle(!on)} css={classes.navIcon} type="button">
           <span css={classes.line} />
           <span css={[classes.line, classes.lineAnimate({ on })]} />
@@ -100,9 +110,7 @@ const Navbar = () => {
       </nav>
       {/* -------------- mobile menu -------------- */}
       <div css={classes.overlay({ on })}>
-        <ul css={classes.overlayMenu({ on })}>
-          {menu}
-        </ul>
+        {menu}
       </div>
     </>
   );
