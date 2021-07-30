@@ -1,26 +1,27 @@
-import { useEffect, useState } from 'react';
-
-import { TEMPLATE_API } from '../../api/api';
+import withSession from '../../api/withSession';
 import Layout from '../../components/Layout';
 import TemplateList from '../../containers/templates/Templates';
+import { getTemplates } from '../../controllers/templates';
 
-const Templates = () => {
-  const [templates, setTemplates] = useState([]);
-
-  useEffect(() => {
-    const init = async () => {
-      const data = await TEMPLATE_API.getTemplates();
-      setTemplates(data.data);
-    };
-
-    init();
-  }, []);
-
+const Templates = ({ templates }) => {
   return (
     <Layout>
       <TemplateList templates={templates} title="Les derniers templates" />
     </Layout>
   );
 };
+
+export const getServerSideProps = withSession(
+  async ({ sessionToken }) => {
+    console.log('sessionToken: ', sessionToken);
+    const templates = await getTemplates();
+
+    return {
+      props: {
+        templates: templates.map((t) => t.toJSON()),
+      },
+    };
+  },
+);
 
 export default Templates;

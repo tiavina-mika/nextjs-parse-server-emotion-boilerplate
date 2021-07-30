@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const parseClass = async (req, res) => {
+const parseClasse = async (req, res) => {
   const body = JSON.parse(req.body || '{}');
   const response = await axios.post(
     'http://localhost:3000' + req.url.substring(4),
@@ -9,4 +9,4 @@ const parseClass = async (req, res) => {
   res.json(response.data);
 };
 
-export default parseClass;
+export default parseClasse;

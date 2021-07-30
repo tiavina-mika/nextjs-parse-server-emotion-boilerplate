@@ -1,11 +1,11 @@
-'use strict';
+"use strict";
 
 /**
  * @return {Promise<Parse.Role>}
  */
 const getRole = async ({ name, sessionToken, useMasterKey }) => {
   return await new Parse.Query(Parse.Role)
-    .equalTo('name', name)
+    .equalTo("name", name)
     .first({ sessionToken, useMasterKey });
 };
 
@@ -17,14 +17,14 @@ const getRole = async ({ name, sessionToken, useMasterKey }) => {
  */
 async function hasRole(user, roleName) {
   if (!user) {
-    throw new Error('Missing user');
+    throw new Error("Missing user");
   }
 
   //---- query ----//
   const query = new Parse.Query(Parse.Role);
-  query.equalTo('users', user);
+  query.equalTo("users", user);
   if (roleName) {
-    query.equalTo('name', roleName);
+    query.equalTo("name", roleName);
   }
 
   const role = await query.first(USE_MASTER_KEY);
@@ -38,14 +38,14 @@ async function hasRole(user, roleName) {
  */
 async function hasRoleAsManager(user) {
   if (!user) {
-    throw new Error('Missing user');
+    throw new Error("Missing user");
   }
   //const managerNames = ['Administrator', 'Marketing Manager', 'Operations Manager', 'Customer Manager', 'Kitchen Manager'];
   const roles = await new Parse.Query(Parse.Role).find(USE_MASTER_KEY);
-  const managerNames = roles ? roles.map((role) => role.get('name')) : [];
+  const managerNames = roles ? roles.map((role) => role.get("name")) : [];
   const roleManager = await new Parse.Query(Parse.Role)
-    .equalTo('users', user)
-    .containedIn('name', managerNames)
+    .equalTo("users", user)
+    .containedIn("name", managerNames)
     .first(USE_MASTER_KEY);
   return !!roleManager;
 }
@@ -58,7 +58,7 @@ async function hasRoleAsManager(user) {
 async function getRolesForUser(user) {
   if (!user) return null;
   const query = new Parse.Query(Parse.Role);
-  query.equalTo('users', user);
+  query.equalTo("users", user);
   return await query.find(USE_MASTER_KEY);
 }
 
@@ -67,10 +67,10 @@ async function getRolesForUser(user) {
  * @param {Array<String>} roleNames, it can be ['Administrator', 'Kitchen Manager', 'Marketing Manager', 'Operations Manager', 'Customer Manager']
  * @returns {Promise.<Parse.User>}
  */
-async function getUsersFromRoles(roleNames = ['Administrator']) {
+async function getUsersFromRoles(roleNames = ["Administrator"]) {
   const userIds = new Set();
   await new Parse.Query(Parse.Role)
-    .containedIn('name', roleNames)
+    .containedIn("name", roleNames)
     .each(async (role) => {
       await role
         .getUsers()
@@ -79,7 +79,7 @@ async function getUsersFromRoles(roleNames = ['Administrator']) {
     }, USE_MASTER_KEY);
 
   return await new Parse.Query(Parse.User)
-    .containedIn('objectId', Array.from(userIds))
+    .containedIn("objectId", Array.from(userIds))
     .find(USE_MASTER_KEY);
 }
 
@@ -91,7 +91,7 @@ async function getUsersFromRoles(roleNames = ['Administrator']) {
 const checkRole = async (user, roleName) => {
   if (!(await hasRole(user, roleName))) {
     throw new Error(
-      'The user ' + user.get('username') + ' doesn\'t have the role ' + roleName,
+      "The user " + user.get("username") + " doesn't have the role " + roleName,
     );
   }
 };
@@ -109,7 +109,7 @@ const isAdministratorOrBetter = async (request) => {
  * @returns {Promise.<boolean>}
  */
 const isAdministrator = async (user) => {
-  return hasRole(user, 'Administrator');
+  return hasRole(user, "Administrator");
 };
 
 /**
@@ -117,7 +117,7 @@ const isAdministrator = async (user) => {
  * @returns {Promise.<void>}
  */
 const checkAdministrator = async (user) => {
-  return checkRole(user, 'Administrator');
+  return checkRole(user, "Administrator");
 };
 
 const createSecurityError = (message) => {

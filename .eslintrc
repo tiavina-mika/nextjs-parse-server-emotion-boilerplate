@@ -26,6 +26,7 @@
         "devDependencies": true
       }
     ],
+    "no-tabs": ["error", { "allowIndentationTabs": true }],
     "jsx-a11y/click-events-have-key-events": "off",
     "linebreak-style": ["error", "unix"],
     "no-undef": "off",

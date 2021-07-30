@@ -2,7 +2,7 @@
 //--------------------------- Parse Functions ------------------------------------//
 //--------------------------------------------------------------------------------//
 
-const parseFunction = (innerFunction) => {
+function parseFunction(innerFunction) {
   return async (request) => {
     try {
       let result = await innerFunction(request);

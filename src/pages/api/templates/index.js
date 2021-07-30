@@ -1,6 +1,6 @@
+// import { createTemplate } from '../../../actions/templates';
 import withSession from '../../../api/withSession';
-
-const Template = Parse.Object.extend('Template');
+import { createTemplate } from '../../../controllers/templates';
 
 const handler = withSession(async ({ req, res }) => {
   // get templates
@@ -14,14 +14,10 @@ const handler = withSession(async ({ req, res }) => {
   // add new template
   const addTemplate = async () => {
     try {
-      const template = new Template();
-      const { name } = req.body;
-
-      template.set('name', name);
-      const newTemplate = await template.save();
-      return res.status(200).json(newTemplate);
+      const template = await createTemplate(req.body);
+      return res.status(200).json(template);
     } catch (error) {
-        return res.status(400).json({ error: true, message: error });
+        return res.status(400).json({ error: true, message: error.message });
     }
   };
 

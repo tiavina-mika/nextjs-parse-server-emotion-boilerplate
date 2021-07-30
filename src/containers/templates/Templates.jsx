@@ -42,7 +42,7 @@ const Templates = ({ templates, title }) => {
   return (
     <div>
       <h1>{title || 'Liste des templates'}</h1>
-      {data.length > 0
+      {data && data.length > 0
         ? (
           <div css={classes.main}>
             <ul css={classes.list} className="flexCenter">

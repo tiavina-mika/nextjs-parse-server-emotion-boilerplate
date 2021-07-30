@@ -1,6 +1,7 @@
 import withSession from '../../api/withSession';
 import Layout from '../../components/Layout';
 import Link from '../../components/Link';
+import { getTemplate } from '../../controllers/templates';
 
 const classes = {
   main: (theme) => ({
@@ -32,9 +33,7 @@ const Template = ({ template }) => {
 
 export const getServerSideProps = withSession(
   async ({ req }) => {
-    const template = await new Parse.Query('Template')
-      .equalTo('objectId', req.params.id)
-      .first();
+    const template = await getTemplate(req.params.id);
 
     return {
       props: {
