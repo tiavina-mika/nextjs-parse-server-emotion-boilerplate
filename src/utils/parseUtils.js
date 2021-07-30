@@ -229,3 +229,20 @@ export const overlappedIntervalQuery = ({
 
   return Parse.Query.or(fieldStartQuery, fieldEndQuery, bothFieldsQuery);
 };
+
+/**
+ * save a parse object with or without session
+ * @param {*} parseObj
+ * @param {string} sessionToken
+ * @returns
+ */
+export const save = async (parseObj, sessionToken) => {
+	let newParseObj;
+	if (sessionToken) {
+		newParseObj = await parseObj.save(null, { sessionToken });
+	} else {
+		newParseObj = await parseObj.save();
+	}
+
+	return newParseObj;
+};

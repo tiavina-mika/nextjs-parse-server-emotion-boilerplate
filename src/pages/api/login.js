@@ -1,24 +1,26 @@
-import cookie from 'cookie';
+import { login } from '../../controllers/auth';
+import { sendRequestError } from '../../utils/utils';
 
-const login = async (req, res) => {
-  console.log(req.body);
-  if (req.method === 'POST') {
-    // let body = JSON.parse(req.body);
-    const user = await Parse.User.logIn(req.body.email, req.body.password);
-    res.setHeader(
-      'Set-Cookie',
-      cookie.serialize('sessionToken', user.getSessionToken(), {
-        httpOnly: false,
-        secure: process.env.NODE_ENV !== 'development',
-        sameSite: 'strict',
-        maxAge: 31536000,
-        path: '/',
-      }),
-    );
-    res.json({ message: 'Welcome back to the app!' });
-  } else {
-    res.status(405).json({ message: 'We only support POST' });
+const loginHandler = async (req, res) => {
+  const loginApi = async () => {
+    try {
+      const user = await login(req, res);
+
+      if (!user) {
+        throw new Error('No account found');
+      }
+      res.json({ message: 'Welcome back to the app!', success: true });
+    } catch (error) {
+      res.status(400).json({ message: error.message || 'internal server error !' });
+    }
+  };
+
+  switch (req.method) {
+    case 'POST':
+      return loginApi();
+    default:
+      return sendRequestError(req, res);
   }
 };
 
-export default login;
+export default loginHandler;

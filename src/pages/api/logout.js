@@ -1,18 +1,22 @@
-import cookie from 'cookie';
+import { logout } from '../../controllers/auth';
+import { sendRequestError } from '../../utils/utils';
 
-export default async function logout(req, res) {
-  console.log('req: ', req);
-  Parse.User.logOut().then(() => {
-    res.setHeader(
-      'Set-Cookie',
-      cookie.serialize('auth', '', {
-        httpOnly: true,
-        secure: process.env.NODE_ENV !== 'development',
-        sameSite: 'strict',
-        maxAge: -1,
-        path: '/',
-      }),
-    );
-    res.json({ message: 'good bye sir !' });
-  });
-}
+const logoutHandler = async (req, res) => {
+  const logoutApi = async () => {
+    try {
+      await logout(res);
+      res.json({ message: 'good bye sir !', success: true });
+    } catch (error) {
+      res.status(400).json({ message: error.message || 'internal server error !' });
+    }
+  };
+
+  switch (req.method) {
+    case 'POST':
+      return logoutApi();
+    default:
+      return sendRequestError(req, res);
+  }
+};
+
+export default logoutHandler;

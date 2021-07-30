@@ -22,12 +22,11 @@ const AddEditTemplate = ({ template }) => {
     if (isAddMode) {
       await TEMPLATE_API.createTemplate(values);
 
-      router.push('/templates');
+      router.push('/');
       return;
     }
 
     const data = await TEMPLATE_API.editTemplate(template.objectId, values);
-    console.log('data: ', data);
     router.push('/templates/' + data.data.objectId);
   };
 

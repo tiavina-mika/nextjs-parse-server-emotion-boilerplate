@@ -1,4 +1,8 @@
 const classes = {
+  root: (theme) => ({
+    marginTop: theme.spacing(1),
+    marginBottom: theme.spacing(1),
+  }),
   fullWidth: {
     width: '100%',
   },
@@ -29,9 +33,9 @@ const classes = {
 const Field = ({
  label, register, required, className, name, fullWidth,
  placeholder, rootCss, labelCss, rootClassName, css,
- error,
+ error, type,
 }) => (
-  <div css={[fullWidth && classes.fullWidth, rootCss]} className={rootClassName}>
+  <div css={[classes.root, fullWidth && classes.fullWidth, rootCss]} className={rootClassName}>
     {/* ------------- label ------------- */}
     {label && (
       <label css={labelCss}>
@@ -45,6 +49,7 @@ const Field = ({
       css={[classes.input, error && classes.invalidInput, css]}
       className={className}
       placeholder={placeholder}
+      type={type || 'text'}
     />
 
     {/* ------------- error ------------- */}

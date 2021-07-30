@@ -1,4 +1,4 @@
-import { getValues, setValues } from '../utils/parseUtils';
+import { getValues, save, setValues } from '../utils/parseUtils';
 
 // --------------------------------------------------------//
 // ------------------ Parse <=> Object --------------------//
@@ -29,9 +29,10 @@ export const setTemplateValues = (template, values) => {
  * @param {*} values
  * @returns
  */
-export const saveTemplate = async (template, values) => {
+export const saveTemplate = async (template, values, sessionToken) => {
 	setTemplateValues(template, values);
-	const newTemplate = await template.save();
+	const newTemplate = await save(template, sessionToken);
+
 	return newTemplate;
 };
 
@@ -48,13 +49,14 @@ export const getTemplate = async (id) => {
 /**
  * create new template
  * @param values
+ * @param {string} sessionToken
  * @returns {*}
  */
-export const createTemplate = async (values) => {
+export const createTemplate = async (values, sessionToken) => {
 	const Template = Parse.Object.extend('Template');
 	const template = new Template();
 
-	const newTemplate = await saveTemplate(template, values);
+	const newTemplate = await saveTemplate(template, values, sessionToken);
 	return newTemplate;
 };
 
@@ -64,9 +66,9 @@ export const createTemplate = async (values) => {
  * @param values
  * @returns {*}
  */
-export const editTemplate = async (id, values) => {
+export const editTemplate = async (id, values, sessionToken) => {
 	const template = await getTemplate(id);
-	const newTemplate = await saveTemplate(template, values);
+	const newTemplate = await saveTemplate(template, values, sessionToken);
 	return newTemplate;
 };
 
@@ -75,11 +77,12 @@ export const editTemplate = async (id, values) => {
  * @param {string} id
  * @returns {*}
  */
-export const deleteTemplate = async (id) => {
-	// const newTemplates = templates.filter((m) => m !== template);
+export const deleteTemplate = async (id, sessionToken) => {
 	const template = await getTemplate(id);
 	template.set('deleted', true);
-	await template.save();
+
+	await save(template, sessionToken);
+
 	return template;
 };
 

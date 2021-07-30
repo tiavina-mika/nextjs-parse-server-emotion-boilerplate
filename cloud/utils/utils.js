@@ -2,7 +2,7 @@
 //--------------------------- Parse Functions ------------------------------------//
 //--------------------------------------------------------------------------------//
 
-function parseFunction(innerFunction) {
+const parseFunction = (innerFunction) => {
   return async (request) => {
     try {
       let result = await innerFunction(request);
@@ -18,7 +18,7 @@ function parseFunction(innerFunction) {
       if (error) {
         message = error.message;
       } else {
-        message = "Error inconnue";
+        message = "Unkown Error";
         request.logger(new Error().stack);
       }
       return message; //throw message;

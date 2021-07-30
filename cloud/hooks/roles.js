@@ -1,6 +1,6 @@
 "use strict";
-const { parseFunction } = require("../utils");
-const roleUtils = require("../roleUtils");
+const { parseFunction } = require("../utils/utils");
+const roleUtils = require("../utils/roleUtils");
 
 Parse.Cloud.define(
   "createRoles",

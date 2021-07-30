@@ -13,39 +13,6 @@ export const getBaseUrl = (req, setLocalhost) => {
   };
 };
 
-export const getUserInfo = async (sessionToken) => {
-  console.log('sessionToken', sessionToken);
-  const userData = await Parse.Cloud.run({
-    url: Parse.serverURL + '/users/me',
-    headers: {
-      'X-Parse-Application-Id': 'rumsquare',
-      'X-Parse-Session-Token': sessionToken,
-    },
-  });
-
-  return userData;
-};
-
-export const getUserRole = async (sessionToken) => {
-  console.log('sessionToken', sessionToken);
-  let userRoles = [];
-  try {
-    userRoles = await Parse.Cloud.run('getUserRole', undefined, {
-      sessionToken,
-    });
-  } catch (error) {
-    console.log('error: ', error);
-  }
-
-  return userRoles.map((u) => ({ ...u, name: u.getName() }));
-};
-
-export const isUserAdmin = async (sessionToken) => {
-  const roles = await getUserRole(sessionToken);
-  const isAdmin = !!roles.find((u) => u.name === 'Administrator');
-  return isAdmin;
-};
-
 // --------------------------------------------------------------------//
 // ----------------------- Parsers/Formatter --------------------------//
 // --------------------------------------------------------------------//
@@ -627,3 +594,11 @@ export const getCookie = (name) => {
 export const parseSwellNumber = (str) => {
   return parseFloat(str.replace(',', '.'));
 };
+
+/**
+ * send api error message if the req method is unknown (other than PUT, DELETE, POST, GET)
+ * @param {*} req
+ * @param {*} res
+ * @returns
+ */
+export const sendRequestError = (req, res) => res.status(405).json({ message: `Method ${req.method} Not Allowed`, success: false });
