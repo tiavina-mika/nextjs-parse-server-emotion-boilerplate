@@ -5,7 +5,7 @@ const logoutHandler = async (req, res) => {
   const logoutApi = async () => {
     try {
       await logout(res);
-      res.json({ message: 'good bye sir !', success: true });
+      res.json({ success: true });
     } catch (error) {
       res.status(400).json({ message: error.message || 'internal server error !' });
     }

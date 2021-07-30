@@ -2,6 +2,8 @@ import React, { useMemo, useState } from 'react';
 
 import { useWindowSize } from '../hooks/useWindowSize';
 import { mq } from '../styles/styles';
+import { PATH_NAMES } from '../utils/constants';
+import { isAuthenticated } from '../utils/utils';
 import Link from './Link';
 
 const classes = {
@@ -19,9 +21,8 @@ const classes = {
     display: ['none', 'none', 'flex'],
   }),
   menu: (theme) => mq({
-    listStyle: 'none',
-    display: ['none', 'none', 'flex'],
-    margin: [false, false, theme.spacing(1.1)],
+    margin: [false, false, -theme.spacing(1.1)],
+    padding: 0,
   }),
   item: (theme) => mq({
     margin: [false, false, theme.spacing(1.1)],
@@ -80,22 +81,39 @@ const Navbar = () => {
   const [on, toggle] = useState(false);
 
   const { isMobile } = useWindowSize();
-  console.log('isMobile: ', isMobile);
 
   const menu = useMemo(() => (
-    <ul css={[isMobile ? classes.overlayMenu({ on }) : classes.menuDesktop, classes.menu]}>
+    <ul
+      css={isMobile
+        ? [classes.overlayMenu({ on }), classes.menu]
+        : [classes.menuDesktop, classes.menu]}
+    >
       <li css={classes.item}>
         <Link href="/templates" css={classes.link}>
           Templates
         </Link>
       </li>
+      {isAuthenticated() && (
+        <>
+          <li css={classes.item}>
+            <Link href="/templates/ajouter" css={classes.link}>
+              Ajouter Template
+            </Link>
+          </li>
+          <li css={classes.item}>
+            <Link href={PATH_NAMES.profile} css={classes.link}>
+              Mon Profil
+            </Link>
+          </li>
+        </>
+      )}
       <li css={classes.item}>
-        <Link href="/templates/ajouter" css={classes.link}>
-          Ajouter Template
+        <Link href={isAuthenticated() ? PATH_NAMES.logout : PATH_NAMES.login} css={classes.link} type="button">
+          {isAuthenticated() ? 'Se déconnecter' : 'Se connecter'}
         </Link>
       </li>
     </ul>
-  ), [isMobile]);
+  ), [isMobile, on]);
 
   return (
     <>

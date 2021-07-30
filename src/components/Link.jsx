@@ -5,7 +5,7 @@ const classes = {
     color: theme.colors.primary,
     cursor: 'pointer',
     '&:hover': {
-      opacity: 0.8,
+      opacity: 0.9,
       textDecoration: 'underline',
     },
   }),

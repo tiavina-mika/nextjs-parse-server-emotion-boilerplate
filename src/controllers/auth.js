@@ -17,6 +17,7 @@ export const login = async (req, res) => {
       path: '/',
     }),
   );
+
   return user;
 };
 
