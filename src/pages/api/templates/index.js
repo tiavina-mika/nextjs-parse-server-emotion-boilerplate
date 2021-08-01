@@ -18,7 +18,7 @@ const handler = withSession(async ({ req, res, sessionToken }) => {
       const template = await createTemplate(req.body, sessionToken);
       return res.status(200).json(template);
     } catch (error) {
-        return res.status(400).json({ error: true, message: error.message });
+      return res.status(400).json({ success: false, message: error.message });
     }
   };
 
