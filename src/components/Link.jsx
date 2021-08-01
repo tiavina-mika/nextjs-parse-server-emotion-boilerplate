@@ -1,4 +1,5 @@
 import NextLink from 'next/link';
+import PropTypes from 'prop-types';
 
 const classes = {
   link: (theme) => ({
@@ -49,6 +50,16 @@ const Link = ({
       </a>
     </NextLink>
   );
+};
+
+Link.propTypes = {
+  href: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
+  type: PropTypes.oneOf(['link', 'button']),
+  className: PropTypes.string,
+  css: PropTypes.string,
+  onClick: PropTypes.func,
+  color: PropTypes.oneOf(['primary', 'secondary', 'default']),
 };
 
 export default Link;

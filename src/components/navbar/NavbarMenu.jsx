@@ -1,5 +1,7 @@
 import React from 'react';
 
+import PropTypes from 'prop-types';
+
 import { useWindowSize } from '../../hooks/useWindowSize';
 import { mq } from '../../styles/styles';
 import NavbarMenuItem from './NavbarMenuItem';
@@ -49,6 +51,11 @@ const NavbarMenu = ({ on, children }) => {
       {children}
     </ul>
   );
+};
+
+NavbarMenu.propTypes = {
+  on: PropTypes.bool,
+  children: PropTypes.node.isRequired,
 };
 
 export default NavbarMenu;

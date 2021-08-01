@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import Button from './Button';
 
 const classes = {
@@ -36,6 +38,13 @@ const FormButtons = ({
       )}
     </div>
   );
+};
+
+FormButtons.propTypes = {
+  primaryButtonText: PropTypes.string,
+  isSubmitting: PropTypes.bool,
+  secondaryButtonText: PropTypes.string,
+  secondaryAction: PropTypes.func,
 };
 
 export default FormButtons;

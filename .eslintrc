@@ -50,6 +50,7 @@
     "prefer-template": "off",
     "arrow-body-style": "off",
     "indent": "off",
+    "react/forbid-prop-types": "off",
     "no-await-in-loop": "off",
     "prefer-arrow/prefer-arrow-functions": [
       "warn",

@@ -73,7 +73,6 @@ const AddEditTemplate = ({ template }) => {
         </div>
       </div>
     </Layout>
-
   );
 };
 

@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 const classes = {
   button: {
     color: '#fff',
@@ -44,6 +46,18 @@ const Button = ({
       <span css={[classes.text, textCss]}>{text}</span>
     </button>
   );
+};
+
+Button.propTypes = {
+  text: PropTypes.string.isRequired,
+  type: PropTypes.oneOf(['submit', 'button']),
+  className: PropTypes.string,
+  css: PropTypes.string,
+  textCss: PropTypes.string,
+  disabled: PropTypes.bool,
+  onClick: PropTypes.func,
+  color: PropTypes.oneOf(['primary', 'secondary', 'default']),
+  fullWidth: PropTypes.bool,
 };
 
 export default Button;

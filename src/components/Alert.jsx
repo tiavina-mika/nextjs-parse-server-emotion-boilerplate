@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 const classes = {
   alert: (theme) => ({
     flex: 1,
@@ -34,6 +36,11 @@ const Alert = ({ text, variant = 'success' }) => {
       </span>
     </div>
   );
+};
+
+Alert.propTypes = {
+  text: PropTypes.string.isRequired,
+  variant: PropTypes.oneOf(['success', 'info', 'warning', 'error']),
 };
 
 export default Alert;

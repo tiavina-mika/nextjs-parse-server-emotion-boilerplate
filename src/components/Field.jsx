@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 const classes = {
   root: (theme) => ({
     marginTop: theme.spacing(1),
@@ -60,5 +62,21 @@ const Field = ({
     )}
   </div>
 );
+
+Field.propTypes = {
+  label: PropTypes.string,
+  register: PropTypes.any,
+  required: PropTypes.bool,
+  className: PropTypes.string,
+  name: PropTypes.string,
+  css: PropTypes.string,
+  placeholder: PropTypes.string,
+  rootCss: PropTypes.string,
+  labelCss: PropTypes.string,
+  rootClassName: PropTypes.string,
+  error: PropTypes.string,
+  type: PropTypes.any,
+  fullWidth: PropTypes.bool,
+};
 
 export default Field;
