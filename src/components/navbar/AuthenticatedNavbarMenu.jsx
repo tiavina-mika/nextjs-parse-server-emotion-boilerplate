@@ -16,7 +16,7 @@ const AuthenticatedNavbarMenu = () => {
         text="Mon Profil"
       />
       <NavbarMenuItem
-        href={PATH_NAMES.profile}
+        href={PATH_NAMES.logout}
         text="Se déconnecter"
         type="button"
       />
