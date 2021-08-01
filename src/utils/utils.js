@@ -615,3 +615,33 @@ export const clearIsAuthIntoLocalStorage = () => {
 export const updateIsAuthIntoLocalStorage = () => {
  localStorage.setItem('isAuthenticated', true);
 };
+
+export const setRequestError = (e) => {
+  if (e.response.data) {
+    return e.response.data.message;
+  }
+
+  return e.message;
+};
+
+/* eslint-disable no-unused-expressions */
+export const actionWithLoader = async (action) => {
+  let loading = true;
+  let error;
+  let result;
+  try {
+    if (typeof action !== 'function') {
+      throw Error('Action should be a function');
+    }
+    result = await action();
+    console.log('result: ', result);
+  } catch (e) {
+    if (e.response.data) {
+      error = e.response.data.message;
+    }
+  } finally {
+    loading = false;
+  }
+
+    return { loading, error, result };
+};
