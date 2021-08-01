@@ -29,7 +29,7 @@ export const createTemplate = async (values) => {
  * @param {*} values // {name}
  * @returns
  */
-export const editTemplate = async (id, values) => {
+ export const editTemplate = async (id, values) => {
   let loading = false;
   let error;
   let result;
@@ -45,5 +45,27 @@ export const editTemplate = async (id, values) => {
     error,
     loading,
     result,
+  };
+};
+
+/**
+ * api to delete a template
+ * @param {string} id
+ * @returns
+ */
+ export const deleteTemplate = async (id) => {
+  let loading = false;
+  let error;
+  try {
+    await TEMPLATE_API.deleteTemplate(id);
+  } catch (e) {
+    error = setRequestError(e);
+  } finally {
+    loading = false;
+  }
+
+  return {
+    error,
+    loading,
   };
 };

@@ -19,10 +19,14 @@ const handler = withSession(async ({ req, res, sessionToken }) => {
 
   // delete template
   const deleteTemplateApi = async () => {
-    const template = await getTemplate(id);
+    try {
+      const template = await getTemplate(id);
 
-    await deleteTemplate(template.id, sessionToken);
-    return res.status(200).json({ success: true });
+      await deleteTemplate(template.id, sessionToken);
+      return res.status(200).json({ success: true });
+    } catch (error) {
+        return res.status(400).json({ success: false, message: error.message });
+    }
   };
 
   switch (req.method) {
