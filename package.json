@@ -10,10 +10,12 @@
     "lint:fix": "next lint --fix --dir src"
   },
   "dependencies": {
+    "@ant-design/icons": "^4.6.2",
     "@emotion/react": "^11.4.0",
     "@emotion/styled": "^11.3.0",
     "@hookform/resolvers": "^2.6.1",
     "@next/bundle-analyzer": "^11.0.1",
+    "antd": "^4.16.9",
     "axios": "^0.21.1",
     "cookie": "^0.4.1",
     "cors": "^2.8.5",

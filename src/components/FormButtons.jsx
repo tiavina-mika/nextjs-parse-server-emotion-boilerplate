@@ -22,7 +22,7 @@ const FormButtons = ({
         text={primaryButtonText || 'Enregistrer'}
         css={classes.submitButton}
         disabled={isSubmitting}
-        type="submit"
+        htmlType="submit"
         fullWidth
       />
       { secondaryAction && (

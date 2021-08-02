@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 
+import { Layout } from 'antd';
 import dynamic from 'next/dynamic';
 
 import { mq } from '../../styles/styles';
 import { isAuthenticated } from '../../utils/utils';
+
+const { Header } = Layout;
 
 const AuthenticatedNavbarMenu = dynamic(() => import('./AuthenticatedNavbarMenu'), { ssr: false });
 const UnauthenticatedNavbarMenu = dynamic(() => import('./UnauthenticatedNavbarMenu'), { ssr: false });
@@ -11,7 +14,7 @@ const UnauthenticatedNavbarMenu = dynamic(() => import('./UnauthenticatedNavbarM
 const classes = {
   nav: (theme) => ({
     padding: '0 20px',
-    minHeight: '9vh',
+    // minHeight: '9vh',
     background: theme.colors.dark,
   }),
   logo: {
@@ -52,26 +55,13 @@ const classes = {
 };
 
 const Navbar = () => {
-  const [on, toggle] = useState(false);
-
   const menu = isAuthenticated() ? <AuthenticatedNavbarMenu /> : <UnauthenticatedNavbarMenu />;
 
   return (
-    <>
-      <nav css={classes.nav} className="flexRow alignCenter spaceBetween">
-        <h1 css={classes.logo}>Tiavina Mika</h1>
-        {menu}
-        <button onClick={() => toggle(!on)} css={classes.navIcon} type="button">
-          <span css={classes.line} />
-          <span css={[classes.line, classes.lineAnimate({ on })]} />
-          <span css={classes.line} />
-        </button>
-      </nav>
-      {/* -------------- mobile menu -------------- */}
-      <div css={classes.overlay({ on })}>
-        {menu}
-      </div>
-    </>
+    <Header css={classes.nav} className="flexRow spaceBetween">
+      <h1 css={classes.logo}>Tiavina Mika</h1>
+      {menu}
+    </Header>
   );
 };
 

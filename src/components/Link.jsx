@@ -27,7 +27,6 @@ const Link = ({
   href,
   children,
   className,
-  css,
   type = 'link',
   color = 'primary',
   onClick,
@@ -40,9 +39,8 @@ const Link = ({
         css={[
           classes.link,
           type === 'button' && [classes[color], classes.button],
-          css,
+          className,
         ]}
-        className={className}
         onClick={onClick}
         role="presentation"
       >
@@ -57,7 +55,6 @@ Link.propTypes = {
   children: PropTypes.node.isRequired,
   type: PropTypes.oneOf(['link', 'button']),
   className: PropTypes.string,
-  css: PropTypes.string,
   onClick: PropTypes.func,
   color: PropTypes.oneOf(['primary', 'secondary', 'default']),
 };

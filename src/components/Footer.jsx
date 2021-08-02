@@ -1,3 +1,7 @@
+import { Layout } from 'antd';
+
+const { Footer: AntdFooter } = Layout;
+
 const classes = {
   root: (theme) => ({
     backgroundColor: theme.colors.dark,
@@ -23,7 +27,7 @@ const classes = {
 };
 
 const Footer = () => (
-  <div css={classes.root} className="stretchSelf">
+  <AntdFooter css={classes.root} className="stretchSelf">
     <ul css={classes.list} className="flexRow justifyCenter">
       <li css={classes.item}>
         <a href="https://www.linkedin.com/in/tiavina-michael-ralainirina/" css={classes.link}>LinkedIn</a>
@@ -32,7 +36,7 @@ const Footer = () => (
         <a href="https://www.youtube.com/channel/UC0CfOprE7AOXQqeFhS2XUIQ" css={classes.link}>YouTube</a>
       </li>
     </ul>
-  </div>
+  </AntdFooter>
 );
 
 export default Footer;

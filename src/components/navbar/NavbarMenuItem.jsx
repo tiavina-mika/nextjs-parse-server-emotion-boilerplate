@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { Menu } from 'antd';
 import PropTypes from 'prop-types';
 
 import { mq } from '../../styles/styles';
@@ -16,11 +17,11 @@ const classes = {
 
 const NavbarMenuItem = ({ text, type = 'link', href }) => {
   return (
-    <li css={classes.item}>
+    <Menu.Item css={classes.item}>
       <Link href={href} css={classes.link} type={type}>
         {text}
       </Link>
-    </li>
+    </Menu.Item>
   );
 };
 

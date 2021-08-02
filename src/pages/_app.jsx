@@ -1,5 +1,6 @@
 import { ThemeProvider } from '@emotion/react';
 
+import 'antd/dist/antd.css';
 import { globalStyles } from '../styles/styles';
 import theme from '../styles/theme';
 

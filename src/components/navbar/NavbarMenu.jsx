@@ -1,8 +1,8 @@
 import React from 'react';
 
+import { Menu } from 'antd';
 import PropTypes from 'prop-types';
 
-import { useWindowSize } from '../../hooks/useWindowSize';
 import { mq } from '../../styles/styles';
 import NavbarMenuItem from './NavbarMenuItem';
 
@@ -11,50 +11,26 @@ const classes = {
     listStyle: 'none',
     display: ['none', 'none', 'flex'],
   }),
-  menu: (theme) => mq({
-    margin: [false, false, -theme.spacing(1.1)],
+  menu: {
     padding: 0,
-  }),
-  overlayMenu: ({ on }) => ({
-    listStyle: 'none',
-    position: 'absolute',
-    left: '50%',
-    top: '45%',
-    transform: 'translate(-50%, -50%)',
-
-    '& li': {
-      opacity: on ? 1 : 0,
-      fontSize: 25,
-      margin: '50px 0px',
-      transition: 'opacity 0.4s ease-in-out',
-    },
-
-    '& li:nth-of-type(2)': {
-      margin: '50px 0px',
-    },
-  }),
+    backgroundColor: 'transparent',
+    borderRight: 'none',
+  },
 };
 
-const NavbarMenu = ({ on, children }) => {
-  const { isMobile } = useWindowSize();
-
+const NavbarMenu = ({ children }) => {
   return (
-    <ul
-      css={isMobile
-        ? [classes.overlayMenu({ on }), classes.menu]
-        : [classes.menuDesktop, classes.menu]}
-    >
+    <Menu css={classes.menu} className="flexRow">
       <NavbarMenuItem
         href="/templates"
         text="Templates"
       />
       {children}
-    </ul>
+    </Menu>
   );
 };
 
 NavbarMenu.propTypes = {
-  on: PropTypes.bool,
   children: PropTypes.node.isRequired,
 };
 
