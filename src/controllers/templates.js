@@ -40,14 +40,21 @@ export const saveTemplate = async (template, values, sessionToken) => {
 // --------------------- CRUD actions ---------------------//
 // --------------------------------------------------------//
 
+/**
+ * get one template by its id
+ * @param {*} id
+ * @returns
+ */
 export const getTemplate = async (id) => {
 	const template = await new Parse.Query('Template')
 		.equalTo('objectId', id)
 		.first();
 	return template;
 };
+
 /**
  * create new template
+ * only authenticated user can create a template, so we need the session token to pass to the server
  * @param values
  * @param {string} sessionToken
  * @returns {*}
@@ -74,6 +81,7 @@ export const editTemplate = async (id, values, sessionToken) => {
 
 /**
  * delete current template
+ * PS: it's just mark the doc as delete = true, not delete it completely from the database
  * @param {string} id
  * @returns {*}
  */
