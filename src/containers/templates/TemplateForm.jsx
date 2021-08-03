@@ -2,8 +2,8 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
-import Field from '../../components/Field';
 import FormButtons from '../../components/FormButtons';
+import FormItem from '../../components/FormItem';
 
 const schema = yup.object().shape({
   name: yup.string().required(),
@@ -13,7 +13,7 @@ const TemplateForm = ({
   onSubmit, defaultValues,
 }) => {
   const {
-    register, handleSubmit, reset,
+    handleSubmit, reset, control,
     formState: { errors, isSubmitting },
   } = useForm({
     resolver: yupResolver(schema),
@@ -22,9 +22,9 @@ const TemplateForm = ({
 
   return (
     <form className="flexColumn stretchSelf" onSubmit={handleSubmit(onSubmit)}>
-      <Field
+      <FormItem
         name="name"
-        register={register}
+        control={control}
         placeholder="Nom"
         error={errors.name?.message}
         required

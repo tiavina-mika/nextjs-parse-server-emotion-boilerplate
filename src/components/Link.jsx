@@ -55,7 +55,7 @@ Link.propTypes = {
   href: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
   type: PropTypes.oneOf(['link', 'button']),
-  className: PropTypes.string,
+  className: PropTypes.any,
   onClick: PropTypes.func,
   color: PropTypes.oneOf(['primary', 'secondary', 'default']),
 };

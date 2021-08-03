@@ -4,7 +4,7 @@ import Button from './Button';
 
 const classes = {
   submitButton: (theme) => ({
-    marginTop: theme.spacing(2),
+    marginTop: theme.spacing(0),
   }),
   resetButton: (theme) => ({
     marginTop: theme.spacing(1),
@@ -20,19 +20,19 @@ const FormButtons = ({
     <div className="flexCenter stretchSelf">
       <Button
         text={primaryButtonText || 'Enregistrer'}
-        css={classes.submitButton}
+        className={classes.submitButton}
         disabled={isSubmitting}
         htmlType="submit"
         fullWidth
       />
-      { secondaryAction && (
+      {secondaryAction && (
         <Button
           text={secondaryButtonText || 'Annuler'}
           onClick={secondaryAction}
-          css={classes.resetButton}
+          className={classes.resetButton}
           disabled={isSubmitting}
-          type="button"
-          color="default"
+          htmlType="button"
+          type="default"
           fullWidth
         />
       )}

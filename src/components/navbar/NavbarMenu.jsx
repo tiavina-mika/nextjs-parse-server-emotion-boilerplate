@@ -27,6 +27,7 @@ const NavbarMenu = ({ children }) => {
       <NavbarMenuItem
         href="/templates"
         text="Templates"
+        data-menu-id="/templates"
       />
       {children}
     </Menu>
