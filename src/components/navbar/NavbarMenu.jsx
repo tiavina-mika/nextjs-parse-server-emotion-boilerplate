@@ -15,6 +15,9 @@ const classes = {
     padding: 0,
     backgroundColor: 'transparent',
     borderRight: 'none',
+    '& .ant-menu-item-selected': {
+      backgroundColor: 'transparent !important',
+    },
   },
 };
 

@@ -7,18 +7,21 @@ import { mq } from '../../styles/styles';
 import Link from '../Link';
 
 const classes = {
-  item: (theme) => mq({
+  navbarMenuItem: (theme) => mq({
     margin: [false, false, theme.spacing(1.1)],
+    '&:active': {
+      backgroundColor: 'transparent !important',
+    },
   }),
   link: {
-    color: '#fff',
+    color: '#fff !important',
   },
 };
 
 const NavbarMenuItem = ({ text, type = 'link', href }) => {
   return (
-    <Menu.Item css={classes.item}>
-      <Link href={href} css={classes.link} type={type}>
+    <Menu.Item css={classes.navbarMenuItem}>
+      <Link href={href} className={classes.link} type={type}>
         {text}
       </Link>
     </Menu.Item>

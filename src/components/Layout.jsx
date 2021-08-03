@@ -10,7 +10,7 @@ const Layout = ({ children }) => {
   return (
     <AntdLayout className="minHeight100">
       <Navbar />
-      <Content>
+      <Content className="p-l-15 p-r-15 p-t-15 p-b-15">
         {children}
       </Content>
       <Footer />

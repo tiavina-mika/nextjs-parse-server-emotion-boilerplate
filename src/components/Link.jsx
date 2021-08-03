@@ -5,6 +5,7 @@ const classes = {
   link: (theme) => ({
     color: theme.colors.primary,
     cursor: 'pointer',
+    fontSize: 18,
     '&:hover': {
       opacity: 0.9,
       textDecoration: 'underline',
