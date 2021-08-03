@@ -16,9 +16,15 @@ const classes = {
   },
   primary: (theme) => ({
     backgroundColor: theme.colors.primary,
+    '&:hover': {
+      backgroundColor: theme.colors.primary,
+    },
   }),
   default: {
     backgroundColor: 'grey',
+    '&:hover': {
+      backgroundColor: 'grey',
+    },
   },
   fullWidth: {
     flex: 1,
