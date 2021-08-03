@@ -19,6 +19,7 @@ const LoginForm = () => {
   const router = useRouter();
 
   const onSubmit = async (values) => {
+    // send the form values to the login api
     const response = await AUTH_API.login(values);
 
     // store if connected to the local storage
@@ -26,6 +27,7 @@ const LoginForm = () => {
       updateIsAuthIntoLocalStorage();
     }
 
+    // go to the home page if logged in successfully
     router.push('/');
   };
 
