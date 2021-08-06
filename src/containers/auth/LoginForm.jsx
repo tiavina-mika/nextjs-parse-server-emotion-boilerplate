@@ -1,21 +1,13 @@
-import { yupResolver } from '@hookform/resolvers/yup';
+import { Form } from 'antd';
 import { useRouter } from 'next/router';
-import { useForm } from 'react-hook-form';
 
 import { AUTH_API } from '../../api/api';
-import Field from '../../components/Field';
 import FormButtons from '../../components/FormButtons';
+import FormItem from '../../components/FormItem';
 import { updateIsAuthIntoLocalStorage } from '../../utils/utils';
-import { loginSchema } from '../../utils/validations';
+import { loginValidation } from '../../utils/validations';
 
 const LoginForm = () => {
-  const {
-    register, handleSubmit,
-    formState: { errors, isSubmitting },
-  } = useForm({
-    resolver: yupResolver(loginSchema),
-  });
-
   const router = useRouter();
 
   const onSubmit = async (values) => {
@@ -32,29 +24,29 @@ const LoginForm = () => {
   };
 
   return (
-    <form className="flexColumn stretchSelf" onSubmit={handleSubmit(onSubmit)}>
-      <Field
+    <Form
+      className="stretchSelf"
+      name="loginForm"
+      onFinish={onSubmit}
+      layout="vertical"
+    >
+      <FormItem
         name="email"
-        register={register}
-        placeholder="Nom"
-        error={errors.email?.message}
-        required
+        placeholder="Email"
+        rules={loginValidation.email}
         fullWidth
       />
-      <Field
+      <FormItem
         name="password"
-        register={register}
-        placeholder="Nom"
-        error={errors.password?.message}
         type="password"
-        required
+        placeholder="Mot de passe"
+        rules={loginValidation.password}
         fullWidth
       />
       <FormButtons
         primaryButtonText="Se connecter"
-        isSubmitting={isSubmitting}
       />
-    </form>
+    </Form>
   );
 };
 

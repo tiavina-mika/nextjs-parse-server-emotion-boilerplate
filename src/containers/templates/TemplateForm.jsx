@@ -1,40 +1,37 @@
-import { yupResolver } from '@hookform/resolvers/yup';
-import { useForm } from 'react-hook-form';
-import * as yup from 'yup';
+import { Form } from 'antd';
 
 import FormButtons from '../../components/FormButtons';
 import FormItem from '../../components/FormItem';
-
-const schema = yup.object().shape({
-  name: yup.string().required(),
-});
+import { templateValidation } from '../../utils/validations';
 
 const TemplateForm = ({
-  onSubmit, defaultValues,
+  onSubmit, initialValues,
 }) => {
-  const {
-    handleSubmit, reset, control,
-    formState: { errors, isSubmitting },
-  } = useForm({
-    resolver: yupResolver(schema),
-    defaultValues,
-  });
+  const [form] = Form.useForm();
+
+  const onReset = () => {
+    form.resetFields();
+  };
 
   return (
-    <form className="flexColumn stretchSelf" onSubmit={handleSubmit(onSubmit)}>
+    <Form
+      className="stretchSelf"
+      form={form}
+      name="templateForm"
+      onFinish={onSubmit}
+      initialValues={initialValues}
+      layout="vertical"
+    >
       <FormItem
         name="name"
-        control={control}
         placeholder="Nom"
-        error={errors.name?.message}
-        required
+        rules={templateValidation.name}
         fullWidth
       />
       <FormButtons
-        secondaryAction={() => reset(defaultValues)}
-        isSubmitting={isSubmitting}
+        secondaryAction={onReset}
       />
-    </form>
+    </Form>
   );
 };
 

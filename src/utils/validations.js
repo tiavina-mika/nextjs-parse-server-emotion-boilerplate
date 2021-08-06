@@ -1,14 +1,46 @@
-import * as yup from 'yup';
-
-const login = {
-  email: yup.string().required(),
-  password: yup.string().required('Password is required'),
+export const templateValidation = {
+  name: [
+    {
+      required: true,
+      message: 'Template name required',
+    },
+  ],
 };
 
-const signup = {
-  ...login,
-  passwordConfirmation: yup.string().oneOf([yup.ref('password'), null], 'Passwords must match'),
+export const loginValidation = {
+  email: [
+    {
+      type: 'email',
+      message: 'Invalid Email',
+    },
+    {
+      required: true,
+      message: 'Email required',
+    },
+  ],
+  password: [
+    {
+      required: true,
+      message: 'Email required',
+    },
+  ],
 };
 
-export const loginSchema = yup.object().shape(login);
-export const signupSchema = yup.object().shape(signup);
+export const signupValidation = {
+  ...loginValidation,
+  passwordConfirmation: [
+    {
+      required: true,
+      message: 'Please confirm your password!',
+    },
+    ({ getFieldValue }) => ({
+      validator(_, value) {
+        if (!value || getFieldValue('password') === value) {
+          return Promise.resolve();
+        }
+
+        return Promise.reject(new Error('The two passwords that you entered do not match!'));
+      },
+    }),
+  ],
+};

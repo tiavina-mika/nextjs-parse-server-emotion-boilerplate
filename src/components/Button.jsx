@@ -53,7 +53,7 @@ const Button = ({
 Button.propTypes = {
   text: PropTypes.string.isRequired,
   htmlType: PropTypes.oneOf(['submit', 'button']),
-  className: PropTypes.string,
+  className: PropTypes.any,
   disabled: PropTypes.bool,
   onClick: PropTypes.func,
   type: PropTypes.oneOf(['primary', 'ghost', 'link', 'dashed', 'text', 'default']),

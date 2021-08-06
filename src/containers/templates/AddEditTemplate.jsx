@@ -52,7 +52,7 @@ const AddEditTemplate = ({ template }) => {
     router.push('/templates/' + result.data.objectId);
   };
 
-  const defaultValues = useMemo(() => {
+  const initialValues = useMemo(() => {
     if (!template) return;
     const { name } = template;
     return {
@@ -69,7 +69,7 @@ const AddEditTemplate = ({ template }) => {
           <h2>
             {isAddMode ? 'Ajouter nouveau template' : 'Modifier template'}
           </h2>
-          <TemplateForm onSubmit={onSubmit} defaultValues={defaultValues} />
+          <TemplateForm onSubmit={onSubmit} initialValues={initialValues} />
         </div>
       </div>
     </Layout>

@@ -6,14 +6,12 @@
     "dev": "nodemon server.js",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "lint:fix": "next lint --fix --dir src"
+    "lint": "next lint --fix --dir src"
   },
   "dependencies": {
     "@ant-design/icons": "^4.6.2",
     "@emotion/react": "^11.4.0",
     "@emotion/styled": "^11.3.0",
-    "@hookform/resolvers": "^2.6.1",
     "@next/bundle-analyzer": "^11.0.1",
     "antd": "^4.16.9",
     "axios": "^0.21.1",
@@ -26,10 +24,7 @@
     "parse-server": "^4.5.0",
     "prop-types": "^15.7.2",
     "react": "17.0.2",
-    "react-dom": "17.0.2",
-    "react-hook-form": "^7.12.1",
-    "react-icons": "^4.2.0",
-    "yup": "^0.32.9"
+    "react-dom": "17.0.2"
   },
   "devDependencies": {
     "@emotion/babel-plugin": "^11.3.0",

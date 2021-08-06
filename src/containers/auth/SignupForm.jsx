@@ -1,20 +1,12 @@
-import { yupResolver } from '@hookform/resolvers/yup';
+import { Form } from 'antd';
 import { useRouter } from 'next/router';
-import { useForm } from 'react-hook-form';
 
 import { AUTH_API } from '../../api/api';
-import Field from '../../components/Field';
 import FormButtons from '../../components/FormButtons';
-import { signupSchema } from '../../utils/validations';
+import FormItem from '../../components/FormItem';
+import { signupValidation } from '../../utils/validations';
 
 const SignupForm = () => {
-  const {
-    register, handleSubmit,
-    formState: { errors, isSubmitting },
-  } = useForm({
-    resolver: yupResolver(signupSchema),
-  });
-
   const router = useRouter();
 
   const onSubmit = async (values) => {
@@ -24,38 +16,38 @@ const SignupForm = () => {
   };
 
   return (
-    <form className="flexColumn stretchSelf" onSubmit={handleSubmit(onSubmit)}>
-      <Field
+    <Form
+      className="stretchSelf"
+      name="loginForm"
+      onFinish={onSubmit}
+      layout="vertical"
+    >
+      <FormItem
         name="email"
-        register={register}
         placeholder="Email"
-        error={errors.email?.message}
-        required
+        rules={signupValidation.email}
         fullWidth
       />
-      <Field
+      <FormItem
         name="password"
-        register={register}
+        type="password"
         placeholder="Mot de passe"
-        error={errors.password?.message}
-        type="password"
-        required
+        rules={signupValidation.password}
         fullWidth
+        hasFeedback
       />
-      <Field
+      <FormItem
         name="passwordConfirmation"
-        register={register}
-        placeholder="Confirmation mot de passe"
-        error={errors.passwordConfirmation?.message}
         type="password"
-        required
+        placeholder="Confirmation mot de passe"
+        rules={signupValidation.passwordConfirmation}
         fullWidth
+        hasFeedback
       />
       <FormButtons
         primaryButtonText="Créer le compte"
-        isSubmitting={isSubmitting}
       />
-    </form>
+    </Form>
   );
 };
 
