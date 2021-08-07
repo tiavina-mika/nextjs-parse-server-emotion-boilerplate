@@ -4,7 +4,7 @@ import { Layout } from 'antd';
 import dynamic from 'next/dynamic';
 
 import { mq } from '../../styles/styles';
-import { isAuthenticated } from '../../utils/utils';
+import { LOCAL_STORAGE_AUTH_NAME } from '../../utils/constants';
 
 const { Header } = Layout;
 
@@ -55,7 +55,8 @@ const classes = {
 };
 
 const Navbar = () => {
-  const menu = isAuthenticated() ? <AuthenticatedNavbarMenu /> : <UnauthenticatedNavbarMenu />;
+  const isAuth = typeof window !== 'undefined' ? !!localStorage.getItem(LOCAL_STORAGE_AUTH_NAME) : false;
+  const menu = isAuth ? <AuthenticatedNavbarMenu /> : <UnauthenticatedNavbarMenu />;
 
   return (
     <Header css={classes.nav} className="flexRow spaceBetween">

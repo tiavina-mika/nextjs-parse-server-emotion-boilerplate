@@ -1,3 +1,5 @@
+import { LOCAL_STORAGE_AUTH_NAME } from './constants';
+
 export const getBaseUrl = (req, setLocalhost) => {
   let protocol = 'https:';
   let host = req ? req.headers.host : window.location.hostname;
@@ -21,7 +23,7 @@ export const getBaseUrl = (req, setLocalhost) => {
  * @param booleanValue
  * @returns {string}
  */
- export const booleanFormatter = (booleanValue) => {
+export const booleanFormatter = (booleanValue) => {
   return booleanValue ? 'true' : 'false';
 };
 
@@ -36,8 +38,12 @@ export const toBoolean = (value) => {
 
 export const randomString = () => {
   return (
-    Math.random().toString(36).substring(2, 6)
-    + Math.random().toString(36).substring(2, 6)
+    Math.random()
+      .toString(36)
+      .substring(2, 6)
+    + Math.random()
+      .toString(36)
+      .substring(2, 6)
   );
 };
 // --------------------------------------------------------------------//
@@ -62,7 +68,7 @@ export const toNumber = (value) => {
   if (!value) {
     return 0;
   }
-    if (typeof value === 'number') return value;
+  if (typeof value === 'number') return value;
 
   const onlyNums = value.replace(/[^\d]/g, '');
   return toInt(onlyNums);
@@ -83,7 +89,7 @@ export const toDecimal = (value, afterComma = 2) => {
   ) {
     return 0;
   }
-    if (typeof value === 'number') return parseFloat(value.toFixed(afterComma));
+  if (typeof value === 'number') return parseFloat(value.toFixed(afterComma));
 
   // replace ',' to '.'
   const str = value.includes(',') ? value.replace(',', '.') : value;
@@ -147,7 +153,7 @@ export const toFrFormatStrWithComma = (price, currency = '€') => {
       + currency
     );
   }
-    return price + ' ' + currency;
+  return price + ' ' + currency;
 };
 
 /**
@@ -155,7 +161,7 @@ export const toFrFormatStrWithComma = (price, currency = '€') => {
  * @param item
  * @returns {boolean}
  */
- export const isNull = (item) => {
+export const isNull = (item) => {
   // NOTE : typeof null = 'object', typeof undefined = 'undefined'
   // see Loose Equality Comparisons With == at ( https://www.sitepoint.com/javascript-truthy-falsy )
   const typeOfValue = typeof item;
@@ -308,7 +314,10 @@ export const lowercase = (str) => {
 
 export const isIncluded = (itemOrStr, text) => {
   if (!itemOrStr || !text) return false;
-  return itemOrStr.toString().toLowerCase().includes(text.toLowerCase());
+  return itemOrStr
+    .toString()
+    .toLowerCase()
+    .includes(text.toLowerCase());
 };
 
 export const getKeyValue = (object, value) => {
@@ -338,7 +347,7 @@ export const isTextEmpty = (string) => {
     string = string.trim();
     return !string.length;
   }
-    return true;
+  return true;
 };
 // --------------------------------------------//
 // ------------------- Forms ------------------//
@@ -601,19 +610,35 @@ export const parseSwellNumber = (str) => {
  * @param {*} res
  * @returns
  */
-export const sendRequestError = (req, res) => res.status(405).json({ message: `Method ${req.method} Not Allowed`, success: false });
+export const sendRequestError = (req, res) => res
+    .status(405)
+    .json({ message: `Method ${req.method} Not Allowed`, success: false });
 
-export const isAuthenticated = () => {
-  if (!process.browser) return;
-  return localStorage.getItem('isAuthenticated');
+export const isAuth = typeof window !== 'undefined' ? localStorage.getItem(LOCAL_STORAGE_AUTH_NAME) : false;
+
+/**
+ * delete the user data in browser local storage
+ */
+export const clearCurrentUserLocalStorage = () => {
+  localStorage.removeItem(LOCAL_STORAGE_AUTH_NAME);
 };
 
-export const clearIsAuthIntoLocalStorage = () => {
- localStorage.removeItem('isAuthenticated');
-};
+/**
+ * save the user data to browser local storage
+ * @param {*} currentUser
+ * @returns
+ */
+export const updateCurrentUserLocalStorage = (currentUser) => {
+  if (!currentUser) return;
 
-export const updateIsAuthIntoLocalStorage = () => {
- localStorage.setItem('isAuthenticated', true);
+  const json = {
+    username: currentUser.username,
+    sessionToken: currentUser.sessionToken,
+    className: '_User',
+  };
+
+	const userData = JSON.stringify(json);
+  localStorage.setItem(LOCAL_STORAGE_AUTH_NAME, userData);
 };
 
 export const setRequestError = (e) => {
@@ -622,26 +647,4 @@ export const setRequestError = (e) => {
   }
 
   return e.message;
-};
-
-/* eslint-disable no-unused-expressions */
-export const actionWithLoader = async (action) => {
-  let loading = true;
-  let error;
-  let result;
-  try {
-    if (typeof action !== 'function') {
-      throw Error('Action should be a function');
-    }
-    result = await action();
-    console.log('result: ', result);
-  } catch (e) {
-    if (e.response.data) {
-      error = e.response.data.message;
-    }
-  } finally {
-    loading = false;
-  }
-
-    return { loading, error, result };
 };

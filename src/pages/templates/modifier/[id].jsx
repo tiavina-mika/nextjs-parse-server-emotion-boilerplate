@@ -1,3 +1,4 @@
+import withAuth from '../../../api/withAuth';
 import withSession from '../../../api/withSession';
 import AddEditTemplate from '../../../containers/templates/AddEditTemplate';
 
@@ -15,4 +16,4 @@ export const getServerSideProps = withSession(
   },
 );
 
-export default AddEditTemplate;
+export default withAuth(AddEditTemplate);

@@ -9,7 +9,7 @@ const loginHandler = async (req, res) => {
       if (!user) {
         throw new Error('No user found');
       }
-      res.json({ success: true });
+      res.json({ success: true, user });
     } catch (error) {
       res.status(400).json({ message: error.message || 'internal server error !' });
     }

@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import { AUTH_API } from '../../api/api';
 import FormButtons from '../../components/FormButtons';
 import FormItem from '../../components/FormItem';
-import { updateIsAuthIntoLocalStorage } from '../../utils/utils';
+import { updateCurrentUserLocalStorage } from '../../utils/utils';
 import { loginValidation } from '../../utils/validations';
 
 const LoginForm = () => {
@@ -16,7 +16,7 @@ const LoginForm = () => {
 
     // store if connected to the local storage
     if (response.data.success) {
-      updateIsAuthIntoLocalStorage();
+      updateCurrentUserLocalStorage(response.data.user);
     }
 
     // go to the home page if logged in successfully
