@@ -21,7 +21,7 @@ export const loginValidation = {
   password: [
     {
       required: true,
-      message: 'Email required',
+      message: 'Password required',
     },
   ],
 };

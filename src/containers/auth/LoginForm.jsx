@@ -15,10 +15,8 @@ const LoginForm = () => {
     const response = await AUTH_API.login(values);
 
     // store if connected to the local storage
-    if (response.data.success) {
-      updateCurrentUserLocalStorage(response.data.user);
-    }
-
+    if (!response.data.success) return;
+    updateCurrentUserLocalStorage(response.data.user);
     // go to the home page if logged in successfully
     router.push('/');
   };
