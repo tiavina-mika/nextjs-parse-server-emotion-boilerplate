@@ -10,6 +10,7 @@ const validationRules = request => {
 
 Parse.Cloud.beforeSave('Template', 
 	parseFunction(async request => {
+    console.log('request: ', request);
     // console.log(' ---- request: ', request);
   }),
   validationRules,

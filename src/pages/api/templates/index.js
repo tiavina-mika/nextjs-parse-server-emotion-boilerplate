@@ -3,7 +3,6 @@ import { createTemplate } from '../../../controllers/templates';
 import { sendRequestError } from '../../../utils/utils';
 
 const handler = withSession(async ({ req, res, sessionToken }) => {
-  console.log('sessionToken: ', sessionToken);
   // get templates
   const getTemplates = async () => {
     const templates = await new Parse.Query('Template')
