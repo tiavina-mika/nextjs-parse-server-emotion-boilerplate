@@ -1,8 +1,8 @@
+import { Alert as AntdAlert } from 'antd';
 import PropTypes from 'prop-types';
 
 const classes = {
   alert: (theme) => ({
-    flex: 1,
     padding: `${theme.spacing(2.5)}px ${theme.spacing(2)}px`,
     borderRadius: 3,
   }),
@@ -28,19 +28,22 @@ const classes = {
   }),
 };
 
-const Alert = ({ text, variant = 'success' }) => {
+const Alert = ({ message, type = 'success', description }) => {
   return (
-    <div css={[classes.alert, classes[variant]]} className="flexRow stretchSelf">
-      <span>
-        {text}
-      </span>
-    </div>
+    <AntdAlert
+      css={[classes.alert, classes[type]]}
+      className="stretchSelf"
+      message={message}
+      description={description}
+      type={type}
+    />
   );
 };
 
 Alert.propTypes = {
-  text: PropTypes.string.isRequired,
-  variant: PropTypes.oneOf(['success', 'info', 'warning', 'error']),
+  message: PropTypes.string.isRequired,
+  description: PropTypes.string,
+  type: PropTypes.oneOf(['success', 'info', 'warning', 'error']),
 };
 
 export default Alert;

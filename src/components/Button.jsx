@@ -2,30 +2,45 @@ import { Button as AntdButton } from 'antd';
 import PropTypes from 'prop-types';
 
 const classes = {
-  button: {
-    color: '#fff',
-    borderRadius: 4,
-    fontWeight: 400,
-    textAlign: 'center',
-    border: 'none',
-    padding: '14px 22px',
-    fontSize: 18,
+  button: (theme) => ({
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 15,
+    padding: '25px 26px',
+    cursor: 'pointer',
+    border: `1px solid ${theme.colors.primary}`,
+    '&:hover,&:focus': {
+      border: `1px solid ${theme.colors.primary}`,
+    },
     '&:hover': {
       opacity: 0.8,
     },
-  },
+    '&:disabled': {
+      backgroundColor: 'rgba(46, 46, 46, 0.16)',
+      color: '#fff',
+    },
+  }),
   primary: (theme) => ({
     backgroundColor: theme.colors.primary,
-    '&:hover': {
+    color: '#fff',
+    '&:hover, &:focus': {
       backgroundColor: theme.colors.primary,
     },
   }),
-  default: {
-    backgroundColor: 'grey',
-    '&:hover': {
-      backgroundColor: 'grey',
+  default: (theme) => ({
+    backgroundColor: '#fff',
+    '&:hover,&:focus': {
+      backgroundColor: '#fff',
+      color: theme.colors.primary,
     },
-  },
+  }),
+  text: (theme) => ({
+    fontSize: 18,
+    color: theme.colors.primary,
+    fontStyle: 'normal',
+    fontWeight: 800,
+  }),
   fullWidth: {
     flex: 1,
     alignSelf: 'stretch',
@@ -33,12 +48,12 @@ const classes = {
 };
 
 const Button = ({
-  text, htmlType, className, disabled = false,
+  text, htmlType = 'button', className, disabled = false,
   onClick, type = 'primary', fullWidth, ...buttonProps
 }) => {
   return (
     <AntdButton
-      css={[classes.button, className, classes[type], fullWidth && classes.fullWidth]}
+      css={[classes.button, classes.text, className, classes[type], fullWidth && classes.fullWidth]}
       htmlType={htmlType === 'submit' ? 'submit' : 'button'}
       disabled={disabled}
       onClick={onClick}
@@ -52,7 +67,7 @@ const Button = ({
 
 Button.propTypes = {
   text: PropTypes.string.isRequired,
-  htmlType: PropTypes.oneOf(['submit', 'button']),
+  htmlType: PropTypes.oneOf(['submit', 'button', 'reset']),
   className: PropTypes.any,
   disabled: PropTypes.bool,
   onClick: PropTypes.func,

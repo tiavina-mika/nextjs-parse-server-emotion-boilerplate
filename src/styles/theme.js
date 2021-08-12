@@ -1,7 +1,8 @@
 const theme = {
   colors: {
-    primary: 'rgb(0, 121, 148)',
-    dark: '#1c2022',
+    primary: '#484FDF',
+    dark: '#1D2424',
+    lightDark: '#7A7A7A',
     white: '#fff',
     alert: '#ff7676', // old infored
     active: '#22c93a',
@@ -29,50 +30,9 @@ const theme = {
     errorSecondary: '#FDECEA',
   },
   fonts: {
-    primary: 'Montserrat',
+    primary: 'Mont, sans-serif',
   },
   spacing: (spacing) => spacing * 6,
-  typography: {
-    h1: {
-      fontSize: '26px',
-      fontWeight: 600,
-      lineHeight: '32px',
-      color: '#231F20',
-      textTransform: 'uppercase',
-    },
-    h2: {
-      fontSize: '20px',
-    },
-    h3: {
-      fontSize: '20px',
-    },
-    h4: {
-      fontSize: '20px',
-    },
-    h5: {
-      fontSize: '20px',
-    },
-    h6: {
-      fontSize: '20px',
-    },
-    subtitle1: {
-      fontSize: '20px',
-    },
-    subtitle2: {
-      fontSize: '20px',
-    },
-    body1: {
-      fontSize: '20px',
-    },
-    body2: {
-      fontSize: '20px',
-    },
-    button: {
-      fontSize: '16px',
-      lineHeight: '20px',
-      fontWeight: 500,
-    },
-  },
 };
 
 export default theme;
