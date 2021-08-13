@@ -53,9 +53,8 @@ const Templates = ({ templates, title }) => {
   return (
     <div>
       <h1>{title || 'Liste des templates'}</h1>
-      {/* <Alert text="Error there" variant="error" /> */}
-      {error && <Alert text={error} variant="error" />}
-      {loading && <Alert text="Loading..." variant="info" />}
+      {error && <Alert message={error} type="error" />}
+      {loading && <Alert message="Loading..." type="info" />}
       {data && data.length > 0
         ? (
           <div css={[classes.main, (error || loading) && classes.mainSpacing]}>

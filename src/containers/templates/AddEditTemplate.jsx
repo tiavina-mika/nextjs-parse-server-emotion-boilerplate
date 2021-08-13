@@ -64,8 +64,8 @@ const AddEditTemplate = ({ template }) => {
     <Layout>
       <div className="flexCenter">
         <div css={classes.container} className="flexCenter">
-          {error && <Alert text={error} variant="error" />}
-          {loading && <Alert text="Loading..." variant="info" />}
+          {error && <Alert message={error} type="error" />}
+          {loading && <Alert message="Loading..." type="info" />}
           <h2>
             {isAddMode ? 'Ajouter nouveau template' : 'Modifier template'}
           </h2>
