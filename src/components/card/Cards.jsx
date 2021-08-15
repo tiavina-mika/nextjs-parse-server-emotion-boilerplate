@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 
-import { getProductsUrl } from '../../utils/utils';
 import Card from './Card';
 
 const classes = {
@@ -14,12 +13,12 @@ const classes = {
 };
 
 /* eslint-disable jsx-a11y/anchor-is-valid */
-const Cards = ({ items, id }) => {
+const Cards = ({ items }) => {
   return (
     <div className="stretchSelf" css={classes.categories}>
       <div className="flexRow justifyCenter">
         {items.map((item, index) => (
-          <Link href={getProductsUrl(item.id, id)} passHref key={index}>
+          <Link href="/" passHref key={index}>
             <a>
               <Card
                 hoverable
@@ -46,7 +45,6 @@ Cards.propTypes = {
       price: PropTypes.string,
     }),
   ),
-  id: PropTypes.any,
 };
 
 export default Cards;

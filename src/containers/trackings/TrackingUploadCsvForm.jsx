@@ -4,7 +4,7 @@ import { Form, Upload as AntdUpload } from 'antd';
 
 import Button from '../../components/Button';
 import CardActions from '../../components/card/CardActions';
-import FormItem from '../../components/FormItem';
+import FormItem from '../../components/form/FormItem';
 import Typography from '../../components/Typography';
 import { mq } from '../../styles/styles';
 import { trackingCsvUploadValidation } from '../../utils/validations';

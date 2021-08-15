@@ -1,7 +1,7 @@
 import { Form } from 'antd';
 
 import CardActions from '../../components/card/CardActions';
-import FormItem from '../../components/FormItem';
+import FormItem from '../../components/form/FormItem';
 import { templateValidation } from '../../utils/validations';
 
 const TemplateForm = ({

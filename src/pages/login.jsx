@@ -1,11 +1,14 @@
-import Auth from '../containers/Auth';
+import Page from '../components/Page';
 import LoginForm from '../containers/auth/LoginForm';
 
 const Login = () => {
   return (
-    <Auth title="Se connecter">
-      <LoginForm />
-    </Auth>
+    <Page
+      title="Se connecter"
+      alignment="center"
+    >
+      <LoginForm size="sm" />
+    </Page>
   );
 };
 

@@ -28,13 +28,17 @@ const Page = ({
   return (
     <Layout>
       <div className={'flexColumn ' + getAlignment(alignment)}>
-        <div css={classes.container} className="flexCenter">
+        <div css={classes.container} className="flexCenter flex1 stretchSelf">
           {error && <Alert message={error} type="error" />}
           {loading && <Alert message="Loading..." type="info" />}
-          <Typography variant="title" level={1}>
-            {title}
-          </Typography>
-          {children}
+          <div className={'flexColumn ' + getAlignment(alignment)}>
+            <Typography variant="title" level={1}>
+              {title}
+            </Typography>
+          </div>
+          <div className={'flex1 stretchSelf flexColumn ' + getAlignment(alignment)}>
+            {children}
+          </div>
         </div>
       </div>
     </Layout>

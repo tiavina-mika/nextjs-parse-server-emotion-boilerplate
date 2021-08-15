@@ -1,9 +1,10 @@
-import { Form } from 'antd';
 import { useRouter } from 'next/router';
 
 import { AUTH_API } from '../../api/api';
-import FormButtons from '../../components/FormButtons';
-import FormItem from '../../components/FormItem';
+import CardActions from '../../components/card/CardActions';
+import Form from '../../components/form/Form';
+import FormItem from '../../components/form/FormItem';
+import { PATH_NAMES } from '../../utils/constants';
 import { signupValidation } from '../../utils/validations';
 
 const SignupForm = () => {
@@ -15,12 +16,14 @@ const SignupForm = () => {
     router.push('/templates');
   };
 
+  const onSecondaryAction = async () => {
+    router.push(PATH_NAMES.login);
+  };
+
   return (
     <Form
-      className="stretchSelf"
-      name="loginForm"
+      name="signupForm"
       onFinish={onSubmit}
-      layout="vertical"
     >
       <FormItem
         name="email"
@@ -44,8 +47,10 @@ const SignupForm = () => {
         fullWidth
         hasFeedback
       />
-      <FormButtons
-        primaryButtonText="Créer le compte"
+      <CardActions
+        onSecondaryAction={onSecondaryAction}
+        primaryTextButton="créer le compte"
+        secondaryTextButton="Se connecter"
       />
     </Form>
   );

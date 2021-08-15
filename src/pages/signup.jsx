@@ -1,11 +1,14 @@
-import Auth from '../containers/Auth';
+import Page from '../components/Page';
 import SignupForm from '../containers/auth/SignupForm';
 
 const Signup = () => {
   return (
-    <Auth title="Se connecter">
+    <Page
+      title="Création de compte"
+      alignment="center"
+    >
       <SignupForm />
-    </Auth>
+    </Page>
   );
 };
 

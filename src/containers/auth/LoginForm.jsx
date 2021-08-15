@@ -1,9 +1,10 @@
-import { Form } from 'antd';
 import { useRouter } from 'next/router';
 
 import { AUTH_API } from '../../api/api';
-import FormButtons from '../../components/FormButtons';
-import FormItem from '../../components/FormItem';
+import CardActions from '../../components/card/CardActions';
+import Form from '../../components/form/Form';
+import FormItem from '../../components/form/FormItem';
+import { PATH_NAMES } from '../../utils/constants';
 import { updateCurrentUserLocalStorage } from '../../utils/utils';
 import { loginValidation } from '../../utils/validations';
 
@@ -21,12 +22,14 @@ const LoginForm = () => {
     router.push('/');
   };
 
+  const onSecondaryAction = async () => {
+    router.push(PATH_NAMES.signup);
+  };
+
   return (
     <Form
-      className="stretchSelf"
       name="loginForm"
       onFinish={onSubmit}
-      layout="vertical"
     >
       <FormItem
         name="email"
@@ -41,8 +44,10 @@ const LoginForm = () => {
         rules={loginValidation.password}
         fullWidth
       />
-      <FormButtons
-        primaryButtonText="Se connecter"
+      <CardActions
+        onSecondaryAction={onSecondaryAction}
+        primaryTextButton="Se connecter"
+        secondaryTextButton="Pas encore de compte?"
       />
     </Form>
   );
