@@ -43,5 +43,5 @@ export const TEMPLATE_API = {
 };
 
 export const TRACKING_API = {
-  uploadCsv: async (body) => requests.post('api/trackings/upload', body, uploadConfig),
+  uploadXls: async (body) => requests.post('api/trackings/upload', body, uploadConfig),
 };

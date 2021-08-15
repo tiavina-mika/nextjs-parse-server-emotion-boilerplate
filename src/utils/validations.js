@@ -7,8 +7,8 @@ export const templateValidation = {
   ],
 };
 
-export const trackingCsvUploadValidation = {
-  csv: [
+export const trackingXlsUploadValidation = {
+  xls: [
     {
       required: true,
       message: 'A file is required',
@@ -67,11 +67,11 @@ export const imageUploadValidation = (file) => {
   return error;
 };
 
-export const csvUploadValidation = (file) => {
+export const xlsUploadValidation = (file) => {
   let error;
-  const isJpgOrPng = file.type === 'application/vnd.ms-excel' || file.type === 'text/csv';
+  const isJpgOrPng = file.type === 'application/vnd.ms-excel';
   if (!isJpgOrPng) {
-    error = 'You can only upload ms-excel or csv file!';
+    error = 'You can only upload ms-excel file!';
   }
   const isLt2M = file.size / 1024 / 1024 <= 30;
   if (!isLt2M) {

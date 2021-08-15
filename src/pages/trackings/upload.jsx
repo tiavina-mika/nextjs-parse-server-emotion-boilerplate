@@ -1,11 +1,11 @@
 import withAuth from '../../api/withAuth';
 import Layout from '../../components/Layout';
-import TrackingUploadCsv from '../../containers/trackings/TrackingUploadCsv';
+import TrackingUploadXls from '../../containers/trackings/TrackingUploadXls';
 
 const Upload = () => {
   return (
     <Layout>
-      <TrackingUploadCsv />
+      <TrackingUploadXls />
     </Layout>
   );
 };

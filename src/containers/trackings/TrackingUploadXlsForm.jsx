@@ -7,7 +7,7 @@ import CardActions from '../../components/card/CardActions';
 import FormItem from '../../components/form/FormItem';
 import Typography from '../../components/Typography';
 import { mq } from '../../styles/styles';
-import { trackingCsvUploadValidation } from '../../utils/validations';
+import { trackingXlsUploadValidation } from '../../utils/validations';
 
 const { Dragger } = AntdUpload;
 
@@ -57,14 +57,14 @@ const normFile = (e) => {
   return e && e.fileList;
 };
 
-const TrackingUploadCsvForm = ({
+const TrackingUploadXlsForm = ({
   onSubmit,
 }) => {
   const [error, setError] = useState('');
   const [form] = Form.useForm();
 
   const beforeUpload = (file) => {
-    const errorMessage = csvUploadValidation(file);
+    const errorMessage = xlsUploadValidation(file);
     setError(errorMessage);
   };
 
@@ -76,16 +76,16 @@ const TrackingUploadCsvForm = ({
   return (
     <Form
       form={form}
-      name="trakingUploadCsvForm"
+      name="trakingUploadXlsForm"
       onFinish={onSubmit}
       layout="vertical"
     >
       <FormItem
-        name="csv"
+        name="xls"
         fullWidth
         valuePropName="fileList"
         getValueFromEvent={normFile}
-        rules={trackingCsvUploadValidation.csv}
+        rules={trackingXlsUploadValidation.xls}
         component={(
           <Dragger {...props} style={classes.dragger} beforeUpload={beforeUpload}>
             <div css={[classes.upload({ error }), classes.uploadInput]} className="flexCenter">
@@ -93,7 +93,7 @@ const TrackingUploadCsvForm = ({
                 <Typography className={classes.text}>
                   {error || label}
                 </Typography>
-                <Button text="Accéder à vos fichier csv" className={classes.button} />
+                <Button text="Accéder à vos fichier xls" className={classes.button} />
               </div>
             </div>
           </Dragger>
@@ -110,4 +110,4 @@ const TrackingUploadCsvForm = ({
   );
 };
 
-export default TrackingUploadCsvForm;
+export default TrackingUploadXlsForm;

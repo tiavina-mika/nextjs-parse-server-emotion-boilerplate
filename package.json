@@ -21,6 +21,7 @@
     "express": "^4.17.1",
     "facepaint": "^1.2.1",
     "fs": "^0.0.1-security",
+    "json-and-xlsx": "^2.1.2",
     "multiparty": "^4.2.2",
     "next": "11.0.1",
     "next-connect": "^0.10.2",
