@@ -7,9 +7,8 @@ const Parse = require('parse/node');
 
 const SERVER_PORT = process.env.PORT || 3000;
 const SERVER_HOST = process.env.HOST || 'localhost';
-const APP_ID = process.env.APP_ID || 'yourz';
+const APP_ID = process.env.APP_ID || 'tiavina-mika';
 const MASTER_KEY = process.env.MASTER_KEY || 'F23xUQdRmQLQwxV5N6a74kqF8aPqIM9F';
-// const DATABASE_URI = process.env.DATABASE_URI || 'mongodb://localhost:27017/rumsquareTest';
 const IS_DEVELOPMENT = process.env.NODE_ENV !== 'production';
 const nextApp = next({ dev: IS_DEVELOPMENT });
 const handle = nextApp.getRequestHandler();
@@ -28,7 +27,7 @@ global.LOCAL = true;
 nextApp
   .prepare()
   .then(() => {
-    Parse.initialize('yourz');
+    Parse.initialize('tiavina-mika');
     Parse.serverURL = `http://${SERVER_HOST}:${SERVER_PORT}/api/parse`;
     Parse.masterKey = MASTER_KEY;
 

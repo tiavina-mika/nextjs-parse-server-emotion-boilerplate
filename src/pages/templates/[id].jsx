@@ -1,6 +1,7 @@
 import withSession from '../../api/withSession';
 import Layout from '../../components/Layout';
 import Link from '../../components/Link';
+import Page from '../../components/Page';
 import { getTemplate } from '../../controllers/templates';
 
 const classes = {
@@ -19,14 +20,15 @@ const classes = {
 const Template = ({ template }) => {
   return (
     <Layout>
-      <h1>{template.name}</h1>
-      <div css={classes.main}>
-        <div className="flexRow" css={classes.buttons}>
-          <Link href={'/templates/modifier/' + template.objectId} css={classes.button} type="button">
-            Modifier
-          </Link>
+      <Page title={template.name}>
+        <div css={classes.main}>
+          <div className="flexRow" css={classes.buttons}>
+            <Link href={'/templates/modifier/' + template.objectId} css={classes.button} type="button">
+              Modifier
+            </Link>
+          </div>
         </div>
-      </div>
+      </Page>
     </Layout>
   );
 };

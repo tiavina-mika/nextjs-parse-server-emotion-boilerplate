@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 
+import PropTypes from 'prop-types';
+
 import { deleteTemplate } from '../../api/templates';
 import Alert from '../../components/Alert';
 import Link from '../../components/Link';
@@ -28,7 +30,7 @@ const classes = {
   }),
 };
 
-const Templates = ({ templates, title }) => {
+const Templates = ({ templates }) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -40,7 +42,6 @@ const Templates = ({ templates, title }) => {
   const handleDelete = async (e, id) => {
     e.preventDefault();
     const { loading: deletionLoading, error: deletionError } = await deleteTemplate(id);
-    console.log('deletionError: ', deletionError);
     setLoading(deletionLoading);
     setError(deletionError);
 
@@ -52,7 +53,6 @@ const Templates = ({ templates, title }) => {
 
   return (
     <div>
-      <h1>{title || 'Liste des templates'}</h1>
       {error && <Alert message={error} type="error" />}
       {loading && <Alert message="Loading..." type="info" />}
       {data && data.length > 0
@@ -83,6 +83,10 @@ const Templates = ({ templates, title }) => {
         : <div>Pas encore de templates</div>}
     </div>
   );
+};
+
+Templates.propTypes = {
+  templates: PropTypes.array,
 };
 
 export default Templates;

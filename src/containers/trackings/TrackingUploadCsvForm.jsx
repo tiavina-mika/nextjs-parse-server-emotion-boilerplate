@@ -75,7 +75,6 @@ const TrackingUploadCsvForm = ({
 
   return (
     <Form
-      className="stretchSelf"
       form={form}
       name="trakingUploadCsvForm"
       onFinish={onSubmit}

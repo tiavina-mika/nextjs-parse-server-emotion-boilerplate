@@ -1,14 +1,7 @@
 import { useState } from 'react';
 
-import Alert from '../../components/Alert';
-import Typography from '../../components/Typography';
+import Page from '../../components/Page';
 import TrackingUploadCsvForm from './TrackingUploadCsvForm';
-
-const classes = {
-  container: (theme) => ({
-    marginTop: theme.spacing(3),
-  }),
-};
 
 const TrackingUploadCsv = () => {
   const [error, setError] = useState('');
@@ -27,16 +20,14 @@ const TrackingUploadCsv = () => {
   };
 
   return (
-    <div className="flexCenter">
-      <div css={classes.container} className="flexCenter">
-        {error && <Alert message={error} type="error" />}
-        {loading && <Alert message="Loading..." type="info" />}
-        <Typography variant="title" level={1}>
-          Importer un fichier csv
-        </Typography>
-        <TrackingUploadCsvForm onSubmit={onSubmit} />
-      </div>
-    </div>
+    <Page
+      title="Importer un fichier csv"
+      alignment="center"
+      error={error}
+      loading={loading}
+    >
+      <TrackingUploadCsvForm onSubmit={onSubmit} />
+    </Page>
   );
 };
 

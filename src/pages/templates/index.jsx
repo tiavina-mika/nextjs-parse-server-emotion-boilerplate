@@ -1,24 +1,18 @@
 import withSession from '../../api/withSession';
 import Layout from '../../components/Layout';
+import Page from '../../components/Page';
 import TemplateList from '../../containers/templates/Templates';
 import { getCurrentUser } from '../../controllers/auth';
 import { getTemplates } from '../../controllers/templates';
 
-const Home = ({ templates, currentUser }) => {
+const Templates = ({ templates, currentUser }) => {
   console.log('currentUser: ', currentUser);
-  // console.log('currentUser: ', currentUser);
-  // useEffect(() => {
-  //   const init = async () => {
-  //     const response = await AUTH_API.getCurrentUser();
-  //     console.log('response: ', response.data.user.objectId);
-  //   };
-
-  //   init();
-  // }, []);
 
   return (
     <Layout>
-      <TemplateList templates={templates} />
+      <Page title="Liste des templates" headTitle="Templates">
+        <TemplateList templates={templates} />
+      </Page>
     </Layout>
   );
 };
@@ -40,4 +34,4 @@ export const getServerSideProps = withSession(
   },
 );
 
-export default Home;
+export default Templates;

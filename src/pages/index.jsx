@@ -1,5 +1,6 @@
 import withSession from '../api/withSession';
 import Layout from '../components/Layout';
+import Page from '../components/Page';
 import TemplateList from '../containers/templates/Templates';
 import { getCurrentUser } from '../controllers/auth';
 import { getTemplates } from '../controllers/templates';
@@ -18,7 +19,9 @@ const Home = ({ templates, currentUser }) => {
 
   return (
     <Layout>
-      <TemplateList templates={templates} />
+      <Page title="Liste des templates">
+        <TemplateList templates={templates} />
+      </Page>
     </Layout>
   );
 };
