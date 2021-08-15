@@ -1,6 +1,8 @@
 import { useState } from 'react';
 
-import { TRACKING_API } from '../../api/api';
+import { useRouter } from 'next/router';
+
+import { uploadTracking } from '../../api/trackings';
 import Page from '../../components/Page';
 import TrackingUploadXlsForm from './TrackingUploadXlsForm';
 
@@ -8,25 +10,16 @@ const TrackingUploadXls = () => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
+  const router = useRouter();
+
   const onSubmit = async (values) => {
-    console.log('values: ', values);
-    // setError(xlsUploadValidation(values));
+    const { error: uploadError, loading: uploadLoading } = await uploadTracking(values);
+    setError(uploadError);
+    setLoading(uploadLoading);
 
-    const formData = new FormData();
-    values.xls.forEach((file) => {
-      formData.append('xls[]', file.originFileObj);
-    });
+    if (uploadError) return;
 
-    await TRACKING_API.uploadXls(formData);
-
-    console.log('values: ', values);
-    // const { error: creationError, loading: creationLoading } = await createTemplate(values);
-    // setError(creationError);
-    // setLoading(creationLoading);
-
-    // if (creationError) return;
-
-    // router.push('/');
+    router.push('/');
   };
 
   return (

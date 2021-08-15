@@ -44,4 +44,9 @@ export const TEMPLATE_API = {
 
 export const TRACKING_API = {
   uploadXls: async (body) => requests.post('api/trackings/upload', body, uploadConfig),
+  getTrackings: async () => requests.get('api/trackings'),
+  getTracking: async (id) => requests.get(`api/trackings/${id}`),
+  createTracking: async (body) => requests.post('api/trackings', body),
+  editTracking: async (id, body) => requests.put(`api/trackings/${id}`, body),
+  deleteTracking: async (id) => requests.delete(`api/trackings/${id}`),
 };
