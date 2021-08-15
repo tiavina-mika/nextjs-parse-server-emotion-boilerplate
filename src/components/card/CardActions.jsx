@@ -55,13 +55,16 @@ const CardActions = ({
   direction = 'horizontal',
   fullWidth = true,
   onPrimaryAction,
+  primaryTextButton = 'Enregistrer',
+  secondaryTextButton = 'Annuler',
   onSecondaryAction,
   rootClassName,
   buttonClassName,
+  disabled,
 }) => {
   return (
     <div
-      className="flex1 stretchSelf"
+      className="flex1 stretchSelf red"
       css={[
         classes.cardActions({ direction }),
         classes[alignment + '_' + direction],
@@ -70,7 +73,7 @@ const CardActions = ({
     >
       {onSecondaryAction && (
         <Button
-          text="Ajouter aux favoris"
+          text={secondaryTextButton}
           type="default"
           className={[
             !isHorizontal(direction)
@@ -84,8 +87,9 @@ const CardActions = ({
         />
       )}
       <Button
-        text="Personnaliser"
+        text={primaryTextButton}
         onClick={onPrimaryAction}
+        disabled={disabled}
         className={[
           fullWidth && classes.fullWidth({ fullWidth }),
           !isHorizontal(direction) && classes.inverse,
@@ -105,6 +109,9 @@ CardActions.propTypes = {
   onPrimaryAction: PropTypes.func,
   rootClassName: PropTypes.any,
   buttonClassName: PropTypes.any,
+  disabled: PropTypes.bool,
+  primaryTextButton: PropTypes.string,
+  secondaryTextButton: PropTypes.string,
 };
 
 export default CardActions;

@@ -14,7 +14,7 @@ const classes = {
 };
 
 const FormButtons = ({
-  primaryButtonText, secondaryButtonText, secondaryAction,
+  primaryButtonText, secondaryButtonText, secondaryAction, disabled,
 }) => {
   return (
     <div className="flexCenter stretchSelf">
@@ -23,6 +23,7 @@ const FormButtons = ({
         className={classes.submitButton}
         htmlType="submit"
         fullWidth
+        disabled={disabled}
       />
       {secondaryAction && (
         <Button
@@ -39,6 +40,7 @@ const FormButtons = ({
 };
 
 FormButtons.propTypes = {
+  disabled: PropTypes.bool,
   primaryButtonText: PropTypes.string,
   secondaryButtonText: PropTypes.string,
   secondaryAction: PropTypes.func,

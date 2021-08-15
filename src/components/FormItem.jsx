@@ -60,7 +60,7 @@ const FormItem = ({
   }
 
   return (
-    <div className={`red flexColumn ${fullWidth ? 'stretchSelf' : ''}`}>
+    <div className={`flexColumn ${fullWidth ? 'stretchSelf' : ''}`}>
       <Form.Item
         label={label}
         name={name}
