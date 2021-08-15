@@ -3,10 +3,8 @@ import fs from 'fs';
 import csv from 'csv-parse';
 import nextConnect from 'next-connect';
 
-import withSession from '../../api/withSession';
-import middleware from '../../middleware/middleware';
-// import { createTemplate } from '../../../controllers/templates';
-// import { sendRequestError } from '../../../utils/utils';
+import withSession from '../../../api/withSession';
+import middleware from '../../../middleware/middleware';
 
 export const config = {
   api: {
@@ -20,11 +18,25 @@ const handler = nextConnect()
     console.log('req: ', req.files);
     const rows = [];
     try {
-      fs.createReadStream(req.files.file[0].path)
+     for (const file of req.files['csv[]']) {
+      fs.createReadStream(file.path)
         .pipe(csv({
-          delimiter: ',', columns: false, trim: true, bom: true,
+          delimiter: ';',
+columns: false,
+trim: true,
+bom: false,
+cast_date: true,
+          caste: true,
+auto_parse: true,
+          skip_empty_lines: true,
+relax_column_count: true,
+relax: true,
         }))
+        // .on('headers', (data) => {
+        //   console.log('headers: ', data);
+        // })
         .on('data', (data) => {
+          console.log('data: ', data);
           rows.push(data);
         })
         .on('end', async () => {
@@ -37,6 +49,7 @@ const handler = nextConnect()
           //   ),
           // );
         });
+     }
     } catch (error) {
       res.status(400).json({ success: false, message: error.message });
     }

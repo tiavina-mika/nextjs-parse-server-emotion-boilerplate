@@ -9,6 +9,12 @@ export const authorized = (sessionToken) => {
 	};
 };
 
+const uploadConfig = {
+  headers: {
+    'Content-Type': 'multipart/form-data',
+  },
+};
+
 const instance = axios.create({
   baseURL: 'http://localhost:3000/',
 });
@@ -21,6 +27,13 @@ export const requests = {
   delete: async (url, data) => await instance.delete(url, data),
 };
 
+export const AUTH_API = {
+  login: async (body) => requests.post('api/login', body),
+  signup: async (body) => requests.post('api/signup', body),
+  logout: async () => requests.post('api/logout', {}),
+  getCurrentUser: async () => requests.get('api/currentUser'),
+};
+
 export const TEMPLATE_API = {
   getTemplates: async () => requests.get('api/templates'),
   getTemplate: async (id) => requests.get(`api/templates/${id}`),
@@ -29,9 +42,6 @@ export const TEMPLATE_API = {
   deleteTemplate: async (id) => requests.delete(`api/templates/${id}`),
 };
 
-export const AUTH_API = {
-  login: async (body) => requests.post('api/login', body),
-  signup: async (body) => requests.post('api/signup', body),
-  logout: async () => requests.post('api/logout', {}),
-  getCurrentUser: async () => requests.get('api/currentUser'),
+export const TRACKING_API = {
+  uploadCsv: async (body) => requests.post('api/trackings/upload', body, uploadConfig),
 };
