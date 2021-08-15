@@ -8,7 +8,6 @@ import TemplateForm from './TemplateForm';
 
 const AddEditTemplate = ({ template }) => {
   const [error, setError] = useState('');
-  console.log('error: ', error);
   const [loading, setLoading] = useState(false);
   const isAddMode = !template;
 
