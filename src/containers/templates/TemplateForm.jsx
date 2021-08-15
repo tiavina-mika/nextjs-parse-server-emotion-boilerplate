@@ -1,6 +1,6 @@
 import { Form } from 'antd';
 
-import FormButtons from '../../components/FormButtons';
+import CardActions from '../../components/card/CardActions';
 import FormItem from '../../components/FormItem';
 import { templateValidation } from '../../utils/validations';
 
@@ -28,8 +28,8 @@ const TemplateForm = ({
         rules={templateValidation.name}
         fullWidth
       />
-      <FormButtons
-        secondaryAction={onReset}
+      <CardActions
+        onSecondaryAction={onReset}
       />
     </Form>
   );

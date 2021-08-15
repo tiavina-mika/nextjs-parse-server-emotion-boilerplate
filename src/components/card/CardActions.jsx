@@ -9,7 +9,7 @@ const classes = {
   cardActions: ({ direction }) => ({
     display: 'flex',
     flexDirection: isHorizontal(direction) ? 'row' : 'column',
-    marginTop: 41,
+    marginTop: 10,
   }),
   left_horizontal: {
     justifyContent: 'flex-start',
@@ -52,7 +52,7 @@ const classes = {
 const CardActions = ({
   alignment = 'left',
   secondaryButtonClassName,
-  direction = 'horizontal',
+  direction = 'vertical',
   fullWidth = true,
   onPrimaryAction,
   primaryTextButton = 'Enregistrer',
@@ -64,7 +64,7 @@ const CardActions = ({
 }) => {
   return (
     <div
-      className="flex1 stretchSelf red"
+      className="flex1 stretchSelf"
       css={[
         classes.cardActions({ direction }),
         classes[alignment + '_' + direction],
@@ -86,10 +86,12 @@ const CardActions = ({
           onClick={onSecondaryAction}
         />
       )}
+
       <Button
         text={primaryTextButton}
         onClick={onPrimaryAction}
         disabled={disabled}
+        htmlType="submit"
         className={[
           fullWidth && classes.fullWidth({ fullWidth }),
           !isHorizontal(direction) && classes.inverse,

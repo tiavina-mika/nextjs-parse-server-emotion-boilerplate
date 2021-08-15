@@ -94,7 +94,7 @@ const TrackingUploadCsvForm = ({
                 <Typography className={classes.text}>
                   {error || label}
                 </Typography>
-                <Button text="Accéder à vos photos" className={classes.button} />
+                <Button text="Accéder à vos fichier csv" className={classes.button} />
               </div>
             </div>
           </Dragger>
@@ -105,6 +105,7 @@ const TrackingUploadCsvForm = ({
         secondaryTextButton="Initialiser"
         disabled={!!error}
         alignment="center"
+        direction="horizontal"
       />
     </Form>
   );

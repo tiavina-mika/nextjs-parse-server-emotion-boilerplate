@@ -3,19 +3,12 @@ import { useMemo, useState } from 'react';
 import { useRouter } from 'next/router';
 
 import { createTemplate, editTemplate } from '../../api/templates';
-import Alert from '../../components/Alert';
-import Layout from '../../components/Layout';
+import Page from '../../components/Page';
 import TemplateForm from './TemplateForm';
-
-const classes = {
-  container: (theme) => ({
-    width: 500,
-    marginTop: theme.spacing(3),
-  }),
-};
 
 const AddEditTemplate = ({ template }) => {
   const [error, setError] = useState('');
+  console.log('error: ', error);
   const [loading, setLoading] = useState(false);
   const isAddMode = !template;
 
@@ -61,18 +54,17 @@ const AddEditTemplate = ({ template }) => {
   }, [template]);
 
   return (
-    <Layout>
-      <div className="flexCenter">
-        <div css={classes.container} className="flexCenter">
-          {error && <Alert message={error} type="error" />}
-          {loading && <Alert message="Loading..." type="info" />}
-          <h2>
-            {isAddMode ? 'Ajouter nouveau template' : 'Modifier template'}
-          </h2>
-          <TemplateForm onSubmit={onSubmit} initialValues={initialValues} />
-        </div>
-      </div>
-    </Layout>
+    <Page
+      title={isAddMode ? 'Ajouter nouveau template' : 'Modifier template'}
+      error={error}
+      loading={loading}
+      alignment="center"
+    >
+      <TemplateForm
+        onSubmit={onSubmit}
+        initialValues={initialValues}
+      />
+    </Page>
   );
 };
 

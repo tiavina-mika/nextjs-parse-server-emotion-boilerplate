@@ -6,7 +6,7 @@ const classes = {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 15,
+    borderRadius: 4,
     padding: '25px 26px',
     cursor: 'pointer',
     border: `1px solid ${theme.colors.primary}`,

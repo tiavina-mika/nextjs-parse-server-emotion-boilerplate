@@ -27,7 +27,7 @@ const classes = {
       paddingBottom: 0,
     },
     '& input': {
-      padding: `${theme.spacing(1.8)}px ${theme.spacing(1)}px !important`,
+      padding: `${theme.spacing(2)}px ${theme.spacing(1)}px !important`,
       transition: 'border-color .3s ease-out',
     },
   }),

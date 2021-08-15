@@ -326,6 +326,18 @@ const getGlobalStyles = () => css`
       .r7 {
         border-radius: 7px;
       }
+      .red {
+        background-color: red;
+      }
+      .blue {
+        background-color: blue;
+      }
+      .green {
+        background-color: green;
+      }
+      .yellow {
+        background-color: yellow;
+      }
     `;
 
 export const globalStyles = <Global styles={getGlobalStyles()} />;
