@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { InfoCircleOutlined } from '@ant-design/icons';
+import { cx } from '@emotion/css';
 import { Form, Input, Checkbox } from 'antd';
 import PropTypes from 'prop-types';
 
@@ -10,26 +10,6 @@ const classes = {
   root: (theme) => ({
     marginTop: theme.spacing(1),
     marginBottom: theme.spacing(1),
-  }),
-  fullWidth: {
-    width: '100%',
-  },
-  formItem: (theme) => ({
-    borderRadius: 4,
-    fontWeight: 400,
-    fontSize: 15,
-    flex: '1 0 auto',
-    lineHeight: 1.4,
-    margin: 0,
-    width: '100%',
-    '& .ant-input-affix-wrapper': {
-      paddingTop: 0,
-      paddingBottom: 0,
-    },
-    '& input': {
-      padding: `${theme.spacing(2)}px ${theme.spacing(1)}px !important`,
-      transition: 'border-color .3s ease-out',
-    },
   }),
 };
 
@@ -60,13 +40,14 @@ const FormItem = ({
   }
 
   return (
-    <div className={`flexColumn ${fullWidth ? 'stretchSelf' : ''}`}>
+    <div className={cx('flexColumn', fullWidth ? 'stretchSelf' : '')}>
       <Form.Item
         label={label}
         name={name}
         rules={rules}
-        css={[classes.formItem, classes.root]}
-        tooltip={tooltip ? { title: tooltip, icon: <InfoCircleOutlined /> } : null}
+        css={classes.root}
+        className="formItem"
+        // tooltip={tooltip ? { title: tooltip, icon: <InfoCircleOutlined /> } : null}
         wrapperCol={wrapperCol}
         help={help}
         {...otherProps}

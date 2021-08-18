@@ -1,7 +1,9 @@
 import { css, Global } from '@emotion/react';
 import facepaint from 'facepaint';
 
-export const breakpoints = [576, 768, 992, 1200];
+import theme from './theme';
+
+export const breakpoints = [576, 768, 992, 1200, 1400];
 
 export const mq = facepaint(
   breakpoints.map((bp) => `@media (min-width: ${bp}px)`),
@@ -18,6 +20,100 @@ const getGlobalStyles = () => css`
       }
       * {
         box-sizing: border-box;
+      }
+      h1 {
+        font-size: 36px !important;
+      }
+      h2 {
+        font-size: 30px !important;
+      }
+      h3 {
+        font-size: 26px !important;
+      }
+      h4 {
+        font-size: 24px !important;
+      }
+      .link {
+        font-family: ${theme.fonts.primary};
+        font-size: 22px;
+        font-weight: 600;
+        cursor: 'pointer',
+      }
+      .link:hover {
+        opacity: 0.9;
+        text-decoration: underline;
+      }
+
+      .button {
+        border-radius: 15px;
+        padding: 25px 26px;
+        cursor: pointer;
+        border: 1px solid ${theme.colors.primary};
+      }
+      .button:focus {
+        border: 1px solid ${theme.colors.primary},
+      }
+      .button:hover {
+        opacity: 0.8;
+        border: 1px solid ${theme.colors.primary};
+      }
+      .button:disabled {
+        background-color: rgba(46, 46, 46, 0.16);
+        color: #fff;
+      }
+      .buttonText {
+        font-size: 18px;
+        color: ${theme.colors.primary};
+        font-style: normal;
+        font-weight: 800;
+      }
+
+      .formItem {
+        border-radius: 4px;
+        font-weight: 400;
+        font-size: 15px;
+        flex: 1 0 auto;
+        line-height: 1.4;
+        margin: 0;
+        width: 100%;
+      }
+      .formItem .ant-input-affix-wrapper {
+        padding-top: 0;
+        padding-bottom: 0;
+      }
+      .formItem input {
+        padding: ${theme.spacing(1.8)}px ${theme.spacing(1)}px !important;
+        transition: border-color .3s ease-out;
+      }
+
+      .typography {
+        font-family: ${theme.fonts.primary};
+        line-height: 1.38;
+      }
+      .bold {
+        font-weight: 800 !important;
+      }
+      .medium {
+        font-weight: 600 !important;
+      }
+      .text {
+        font-size: 22px !important;
+        font-weight: 600;
+      }
+      .light {
+        color: #fff !important;
+      }
+      .dark {
+        color: ${theme.colors.dark} !important;
+      }
+      .lightDark {
+        color: ${theme.colors.lightDark};
+      }
+      .active {
+        color: ${theme.colors.primary};
+      }
+      .default {
+        color: #000 !important;
       }
       .flexRow {
         display: flex;
@@ -123,7 +219,7 @@ const getGlobalStyles = () => css`
         height: 100%;
       }
       .minHeight100 {
-        height: 100vh;
+        min-height: 100vh;
       }
       .pointer {
         cursor: pointer;
@@ -147,7 +243,10 @@ const getGlobalStyles = () => css`
       .floatRight {
         float: right;
       }
-
+      .fullWidth {
+        flex: 1;
+        align-self: stretch;
+      }
       .hidden {
         opacity: 0;
       }
@@ -157,6 +256,59 @@ const getGlobalStyles = () => css`
       .transition300ms {
         transition: all 300ms ease-in-out;
       }
+      .blackColor {
+        color: #000 !important;
+      }
+      .m-x-5 {
+        margin-right: 5px;
+        margin-left: 5px;
+      }
+      .m-x-8 {
+        margin-right: 8px;
+        margin-left: 8px;
+      }
+      .m-x-10 {
+        margin-right: 10px;
+        margin-left: 10px;
+      }
+      .m-x-15 {
+        margin-right: 15px;
+        margin-left: 15px;
+      }
+      .m-x-20 {
+        margin-right: 20px;
+        margin-left: 20px;
+      }
+      .m-x-25 {
+        margin-right: 25px;
+        margin-left: 25px;
+      }
+      
+      .m-y-5 {
+        margin-top: 5px;
+        margin-bottom: 5px;
+      }
+      .m-y-8 {
+        margin-top: 8px;
+        margin-bottom: 8px;
+      }
+      .m-y-10 {
+        margin-top: 10px;
+        margin-bottom: 10px;
+      }
+      .m-y-15 {
+        margin-top: 15px;
+        margin-bottom: 15px;
+      }
+      .m-y-20 {
+        margin-top: 20px;
+        margin-bottom: 20px;
+      }
+      .m-y-25 {
+        margin-top: 25px;
+        margin-bottom: 25px;
+      }
+
       .m-r-5 {
         margin-right: 5px;
       }
@@ -228,6 +380,56 @@ const getGlobalStyles = () => css`
       }
       .m-t-0 {
         margin-top: 0;
+      }
+
+      .p-x-5 {
+        padding-right: 5px;
+        padding-left: 5px;
+      }
+      .p-x-8 {
+        padding-right: 8px;
+        padding-left: 8px;
+      }
+      .p-x-10 {
+        padding-right: 10px;
+        padding-left: 10px;
+      }
+      .p-x-15 {
+        padding-right: 15px;
+        padding-left: 15px;
+      }
+      .p-x-20 {
+        padding-right: 20px;
+        padding-left: 20px;
+      }
+      .p-x-25 {
+        padding-right: 25px;
+        padding-left: 25px;
+      }
+      
+      .p-y-5 {
+        padding-top: 5px;
+        padding-bottom: 5px;
+      }
+      .p-y-8 {
+        padding-top: 8px;
+        padding-bottom: 8px;
+      }
+      .p-y-10 {
+        padding-top: 10px;
+        padding-bottom: 10px;
+      }
+      .p-y-15 {
+        padding-top: 15px;
+        padding-bottom: 15px;
+      }
+      .p-y-20 {
+        padding-top: 20px;
+        padding-bottom: 20px;
+      }
+      .p-y-25 {
+        padding-top: 25px;
+        padding-bottom: 25px;
       }
 
       .p-r-5 {
@@ -328,9 +530,6 @@ const getGlobalStyles = () => css`
       }
       .red {
         background-color: red;
-      }
-      .blue {
-        background-color: blue;
       }
       .green {
         background-color: green;

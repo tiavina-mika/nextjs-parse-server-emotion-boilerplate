@@ -1,3 +1,4 @@
+import { cx, css } from '@emotion/css';
 import PropTypes from 'prop-types';
 
 import { mq } from '../../styles/styles';
@@ -7,23 +8,12 @@ const classes = {
   description: mq({
     marginTop: [20, false, 43],
   }),
-  priceContainer: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'flex-end',
-  },
-  priceLabel: {
+  priceLabel: css({
     fontSize: '14px !important',
-  },
-  priceSize: {
+  }),
+  priceSize: css({
     fontSize: '25px !important',
-  },
-  bold: {
-    fontWeight: '800 !important',
-  },
-  medium: {
-    fontWeight: '600 !important',
-  },
+  }),
 };
 
 const CardContent = ({
@@ -32,8 +22,8 @@ const CardContent = ({
   priceClassName, titleClassName,
 }) => {
   return (
-    <div className="flexColumn">
-      <div className="flexRow spaceBetween stretchSelf">
+    <div className="flexCenter flex1">
+      <div className="flexRow spaceBetween stretchSelf flex1">
         <Typography
           level={4}
           variant="title"
@@ -43,12 +33,15 @@ const CardContent = ({
           {title}
         </Typography>
         {price && (
-          <div css={[classes.priceContainer, actionClassName]}>
-            <Typography className={[classes.medium, priceLabelClassName || classes.priceLabel]} theme="lightDark">
+          <div className={actionClassName || 'flexColumn flexEnd'}>
+            <Typography
+              theme="lightDark"
+              className={cx('medium', priceLabelClassName || classes.priceLabel)}
+            >
               À partir de
             </Typography>
             <Typography
-              className={[classes.bold, priceClassName || classes.priceSize]}
+              className={cx('bold', priceClassName, classes.priceSize)}
               theme="active"
             >
               {price}
@@ -56,13 +49,13 @@ const CardContent = ({
           </div>
         )}
       </div>
-      <div css={classes.description}>
-        {description && (
-          <Typography type="paragraph" className={descriptionClassName} theme="lightDark">
+      {description && (
+        <div css={classes.description}>
+          <Typography type="paragraph" css={descriptionClassName} theme="lightDark">
             {description}
           </Typography>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 };

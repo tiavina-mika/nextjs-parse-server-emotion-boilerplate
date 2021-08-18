@@ -1,26 +1,8 @@
+import { cx } from '@emotion/css';
 import { Button as AntdButton } from 'antd';
 import PropTypes from 'prop-types';
 
 const classes = {
-  button: (theme) => ({
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 4,
-    padding: '25px 26px',
-    cursor: 'pointer',
-    border: `1px solid ${theme.colors.primary}`,
-    '&:hover,&:focus': {
-      border: `1px solid ${theme.colors.primary}`,
-    },
-    '&:hover': {
-      opacity: 0.8,
-    },
-    '&:disabled': {
-      backgroundColor: 'rgba(46, 46, 46, 0.16)',
-      color: '#fff',
-    },
-  }),
   primary: (theme) => ({
     backgroundColor: theme.colors.primary,
     color: '#fff',
@@ -35,16 +17,6 @@ const classes = {
       color: theme.colors.primary,
     },
   }),
-  text: (theme) => ({
-    fontSize: 18,
-    color: theme.colors.primary,
-    fontStyle: 'normal',
-    fontWeight: 800,
-  }),
-  fullWidth: {
-    flex: 1,
-    alignSelf: 'stretch',
-  },
 };
 
 const Button = ({
@@ -53,7 +25,8 @@ const Button = ({
 }) => {
   return (
     <AntdButton
-      css={[classes.button, classes.text, className, classes[type], fullWidth && classes.fullWidth]}
+      css={classes[type]}
+      className={cx('flexCenter button buttonText', className, fullWidth ? 'fullWidth' : '')}
       htmlType={htmlType === 'submit' ? 'submit' : 'button'}
       disabled={disabled}
       onClick={onClick}

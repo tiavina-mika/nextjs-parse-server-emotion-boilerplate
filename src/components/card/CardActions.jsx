@@ -1,3 +1,4 @@
+import { cx } from '@emotion/css';
 import PropTypes from 'prop-types';
 
 import { mq } from '../../styles/styles';
@@ -6,11 +7,10 @@ import Button from '../Button';
 const isHorizontal = (direction) => direction === 'horizontal';
 
 const classes = {
-  cardActions: ({ direction }) => ({
-    display: 'flex',
-    flexDirection: isHorizontal(direction) ? 'row' : 'column',
-    marginTop: 10,
-  }),
+  // cardActions: {
+  //   marginTop: 41,
+  //   // marginTop: 41,
+  // },
   left_horizontal: {
     justifyContent: 'flex-start',
   },
@@ -55,48 +55,46 @@ const CardActions = ({
   direction = 'vertical',
   fullWidth = true,
   onPrimaryAction,
-  primaryTextButton = 'Enregistrer',
-  secondaryTextButton = 'Annuler',
   onSecondaryAction,
   rootClassName,
   buttonClassName,
+  primaryTextButton = 'Enregistrer',
+  secondaryTextButton = 'Annuler',
   disabled,
 }) => {
   return (
     <div
-      className="flex1 stretchSelf"
+      className={cx(isHorizontal(direction) ? 'flexRow' : 'flexColumn', 'flex1 stretchSelf m-t-10', rootClassName)}
       css={[
-        classes.cardActions({ direction }),
+        classes.cardActions,
         classes[alignment + '_' + direction],
-        rootClassName,
       ]}
     >
       {onSecondaryAction && (
         <Button
           text={secondaryTextButton}
           type="default"
-          className={[
+          css={[
             !isHorizontal(direction)
               ? classes.primaryButton({ direction })
               : classes.secondaryButton({ direction }),
             fullWidth && classes.fullWidth({ fullWidth }),
             secondaryButtonClassName,
-            buttonClassName,
           ]}
+          className={buttonClassName}
           onClick={onSecondaryAction}
         />
       )}
-
       <Button
         text={primaryTextButton}
-        onClick={onPrimaryAction}
         disabled={disabled}
         htmlType="submit"
-        className={[
+        onClick={onPrimaryAction}
+        css={[
           fullWidth && classes.fullWidth({ fullWidth }),
           !isHorizontal(direction) && classes.inverse,
-          buttonClassName,
         ]}
+        className={buttonClassName}
       />
     </div>
   );

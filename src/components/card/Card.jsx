@@ -22,6 +22,18 @@ const classes = {
       content: 'normal',
     },
   }),
+  image: {
+    width: 630,
+    height: 370,
+    position: 'relative',
+    overflow: 'hidden',
+  },
+  cardBody: {
+    padding: '0 28px',
+    display: 'flex',
+    alignItems: 'center',
+    height: 109,
+  },
 };
 
 const Card = ({
@@ -39,17 +51,18 @@ const Card = ({
       css={[classes.card, className]}
       cover={
         image ? (
-          <Image
-            src={image}
-            alt={image}
-            width="630"
-            height="378"
-            layout="intrinsic"
-          />
+          <div css={classes.image}>
+            <Image
+              src={image}
+              alt={image}
+              objectFit="cover"
+              layout="fill"
+            />
+          </div>
         ) : null
       }
       actions={actions}
-      bodyStyle={bodyStyle}
+      bodyStyle={{ ...bodyStyle, ...classes.cardBody }}
     >
       <CardContent
         title={title}

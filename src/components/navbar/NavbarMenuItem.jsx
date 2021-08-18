@@ -21,7 +21,7 @@ const classes = {
 const NavbarMenuItem = ({ text, type = 'link', href }) => {
   return (
     <Menu.Item css={classes.navbarMenuItem} data-menu-id={href}>
-      <Link href={href} className={classes.link} type={type}>
+      <Link href={href} css={classes.link} type={type}>
         {text}
       </Link>
     </Menu.Item>
