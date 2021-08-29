@@ -1,4 +1,4 @@
-import { useContext, useLayoutEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
 import MediaQuery, { useMediaQuery, Context as ResponsiveContext } from 'react-responsive';
 
@@ -15,10 +15,10 @@ export const LARGE_DESKTOP_BREAKPOINT = 1920;
 // ------------ media queries ------------ //
 // --------------------------------------- //
 export const mobile = `@media (max-width: ${MOBILE_BREAKPOINT}px)`;
-export const tablet = `@media (min-width: ${MOBILE_BREAKPOINT + 1}px)`;
-export const desktop = `@media (min-width: ${DESKTOP_BREAKPOINT + 1}px)`;
 export const mobileTablet = `@media (max-width: ${TABLET_BREAKPOINT}px)`;
+export const tablet = `@media (min-width: ${MOBILE_BREAKPOINT + 1}px)`;
 export const tabletDesktop = `@media (min-width: ${TABLET_BREAKPOINT + 1}px) and (max-width: ${DESKTOP_BREAKPOINT}px)`;
+export const desktop = `@media (min-width: ${DESKTOP_BREAKPOINT + 1}px)`;
 export const largeDesktop = `@media (min-width: ${LARGE_DESKTOP_BREAKPOINT + 1}px)`;
 
 // --------------------------------------- //
@@ -110,7 +110,8 @@ export const useResponsive = () => {
     minWidth: LARGE_DESKTOP_BREAKPOINT + 1,
     deviceWidth: width,
   });
-  useLayoutEffect(() => {
+
+  useEffect(() => {
     if (typeof window !== 'undefined') setIsClient(true);
   }, []);
 
@@ -120,6 +121,6 @@ export const useResponsive = () => {
     isTablet: isClient ? isTablet : false,
     isTabletDesktop: isClient ? isTabletDesktop : false,
     isDesktop: isClient ? isDesktop : true,
-    isLargeDesktop: isClient ? isLargeDesktop : true,
+    isLargeDesktop: isClient ? isLargeDesktop : false,
   };
 };
