@@ -1,9 +1,28 @@
 import {
-  Desktop, LargeDesktop, Mobile, MobileTablet, Tablet, TabletDesktop,
+  desktop,
+  Desktop, largeDesktop, LargeDesktop, mobile, Mobile, MobileTablet, tablet, Tablet, TabletDesktop,
   useResponsive,
 } from '../components/Responsive';
 import Typography from '../components/Typography';
 
+const classes = {
+  box: {
+    width: 200,
+    height: 200,
+    [mobile]: {
+      backgroundColor: 'red',
+    },
+    [tablet]: {
+      backgroundColor: 'green',
+    },
+    [desktop]: {
+      backgroundColor: 'yellow',
+    },
+    [largeDesktop]: {
+      backgroundColor: 'blue',
+    },
+  },
+};
 const Responsive = () => {
   const {
     isMobile, isMobileTablet, isTablet, isDesktop, isTabletDesktop,
@@ -39,6 +58,7 @@ const Responsive = () => {
           <LargeDesktop>LargeDesktop</LargeDesktop>
         </div>
       </div>
+      <div css={classes.box} className="m-t-25" />
     </div>
   );
 };

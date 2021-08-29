@@ -15,7 +15,7 @@ export const LARGE_DESKTOP_BREAKPOINT = 1920;
 // ------------ media queries ------------ //
 // --------------------------------------- //
 export const mobile = `@media (max-width: ${MOBILE_BREAKPOINT}px)`;
-export const tablet = `@media (min-width: ${MOBILE_BREAKPOINT + 1}px) and (max-width: ${TABLET_BREAKPOINT}px)`;
+export const tablet = `@media (min-width: ${MOBILE_BREAKPOINT + 1}px)`;
 export const desktop = `@media (min-width: ${DESKTOP_BREAKPOINT + 1}px)`;
 export const mobileTablet = `@media (max-width: ${TABLET_BREAKPOINT}px)`;
 export const tabletDesktop = `@media (min-width: ${TABLET_BREAKPOINT + 1}px) and (max-width: ${DESKTOP_BREAKPOINT}px)`;
@@ -46,7 +46,6 @@ export const Tablet = (props) => {
     <MediaQuery
       {...props}
       minWidth={MOBILE_BREAKPOINT + 1}
-      maxWidth={TABLET_BREAKPOINT}
       deviceWidth={width}
     />
   );
@@ -93,7 +92,6 @@ export const useResponsive = () => {
 
   const isTablet = useMediaQuery({
     minWidth: MOBILE_BREAKPOINT + 1,
-    maxWidth: TABLET_BREAKPOINT,
     deviceWidth: width,
   });
 
