@@ -115,6 +115,8 @@ export const useResponsive = () => {
     if (typeof window !== 'undefined') setIsClient(true);
   }, []);
 
+  // add default value in server side
+  // see: https://github.com/contra/react-responsive/issues/162
   return {
     isMobile: isClient ? isMobile : false,
     isMobileTablet: isClient ? isMobileTablet : false,
